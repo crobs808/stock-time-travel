@@ -112,6 +112,9 @@
   padding: 15px;
   background: #fafafa;
   border-bottom: 1px solid #ddd;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 .chart-title {
@@ -133,6 +136,9 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 8px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .chart-bar-wrapper {
@@ -140,9 +146,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 4px;
   height: 100%;
-  gap: 4px;
+  gap: 2px;
 }
 
 .chart-bar {
@@ -167,11 +174,12 @@
 }
 
 .chart-year {
-  font-size: 0.6em;
+  font-size: 0.5em;
   color: #999;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   white-space: nowrap;
+  line-height: 1;
 }
 
 /* Trading Buttons */

@@ -29,12 +29,15 @@
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  min-height: 65px;
+  width: 70px;
+  height: 65px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
+  overflow: hidden;
+  padding-left: 8px;
 }
 
 .stock-card:hover:not(.locked) {
@@ -48,6 +51,18 @@
   cursor: not-allowed;
 }
 
+.stock-card.disabled {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  border-color: #991b1b !important;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.stock-card.disabled:hover:not(.locked) {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
 .stock-card-header {
   display: flex;
   justify-content: space-between;
@@ -59,6 +74,17 @@
   font-size: 1em;
   font-weight: bold;
   color: white;
+}
+
+.stock-name {
+  font-size: 0.65em;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 2px;
+  line-height: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 1.2em;
 }
 
 .lock-badge {

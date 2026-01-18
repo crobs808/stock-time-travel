@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { checkAchievements, getUnlockedStocks } from '../utils/achievements';
 import headlinesData from '../data/headlines.json';
-import { stockReturns } from '../data/stockReturns';
+import { stockReturns, stocks } from '../data/stockReturns';
 
 export const useGameStore = create((set, get) => ({
   // Game state
@@ -28,6 +28,12 @@ export const useGameStore = create((set, get) => ({
   unlockedStocks: new Set(['AAPL', 'AMZN', 'MSFT', 'INTC', 'F', 'KO', 'VFINX', 'CD', 'Debt']),
   achievements: new Set(),
 
+  // Tips system
+  tipsEnabled: true,
+  clickCounter: 0,
+  showTipsModal: false,
+  currentTipIndex: 0,
+
   // Headlines loaded from JSON
   headlines: headlinesData,
 
@@ -37,6 +43,23 @@ export const useGameStore = create((set, get) => ({
   setTaxBracket: (bracket) => set((state) => ({
     taxState: { ...state.taxState, taxBracket: bracket },
   })),
+
+  // Tips actions
+  toggleTips: () => set((state) => ({ tipsEnabled: !state.tipsEnabled })),
+  incrementClickCounter: () => set((state) => {
+    if (!state.tipsEnabled) return state;
+    
+    const newCounter = state.clickCounter + 1;
+    if (newCounter >= 30) {
+      return {
+        clickCounter: 0,
+        showTipsModal: true,
+        currentTipIndex: Math.floor(Math.random() * 13), // Random tip from 13 tips
+      };
+    }
+    return { clickCounter: newCounter };
+  }),
+  closeTipsModal: () => set({ showTipsModal: false }),
 
   // Start a new game
   startGame: (taxBracket = 'middle') => set((state) => {
@@ -108,7 +131,7 @@ export const useGameStore = create((set, get) => ({
   }),
 
   // Sell stocks (FIFO method)
-  sellStock: (symbol, shares) => set((state) => {
+  sellStock: (symbol, shares, currentPrice) => set((state) => {
     const lots = state.holdings[symbol];
     if (!lots || lots.length === 0) return state;
 
@@ -121,13 +144,16 @@ export const useGameStore = create((set, get) => ({
       const lot = updatedLots[i];
       const sharesToSellFromLot = Math.min(sharesToSell, lot.shares);
 
-      // Calculate proceeds and tax liability
-      const currentPrice = state.holdings._currentPrices?.[symbol] || lot.costBasis;
-      const proceeds = sharesToSellFromLot * currentPrice;
+      // Calculate proceeds with year-aware pricing
+      const purchaseYear = new Date(lot.purchaseDate).getFullYear();
+      const get = useGameStore.getState();
+      const yearAwarePrice = get.getStockPriceForYear(symbol, state.currentYear, lot.costBasis, purchaseYear);
+      const price = currentPrice || yearAwarePrice || lot.costBasis;
+      const proceeds = sharesToSellFromLot * price;
       totalProceeds += proceeds;
 
       // Track gain/loss
-      const gain = (currentPrice - lot.costBasis) * sharesToSellFromLot;
+      const gain = (price - lot.costBasis) * sharesToSellFromLot;
       const purchaseDate = new Date(lot.purchaseDate);
       const saleDate = new Date();
       const daysHeld = Math.floor((saleDate - purchaseDate) / (1000 * 60 * 60 * 24));
@@ -213,6 +239,39 @@ export const useGameStore = create((set, get) => ({
     });
     
     return prices;
+  },
+
+  // Check if a stock is available (IPO'd) for a given year
+  isStockAvailable: (symbol, year) => {
+    const stock = stocks.find((s) => s.symbol === symbol);
+    if (!stock) return false;
+    return year >= stock.ipoYear;
+  },
+
+  // Get stock price for a given year, accounting for IPO year
+  // If year < IPO year, returns purchase price (frozen)
+  // Otherwise returns calculated price based on returns
+  getStockPriceForYear: (symbol, year, purchasePrice, purchaseYear) => {
+    const stock = stocks.find((s) => s.symbol === symbol);
+    if (!stock) return purchasePrice;
+    
+    // If current year is before company's IPO, use purchase price (frozen)
+    if (year < stock.ipoYear) {
+      return purchasePrice;
+    }
+    
+    // If current year is before purchase year, use purchase price
+    if (year < purchaseYear) {
+      return purchasePrice;
+    }
+    
+    // Otherwise calculate price based on returns for this year
+    if (stockReturns[symbol] && stockReturns[symbol][year]) {
+      const returnRate = stockReturns[symbol][year];
+      return 100 * (1 + returnRate);
+    }
+    
+    return purchasePrice;
   },
 
   // Calculate portfolio value (pre-tax)

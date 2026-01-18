@@ -82,7 +82,7 @@ export default function StockTradeModal({ symbol, onClose }) {
   const handleSellMax = () => {
     const { latestTotalShares } = getLatestState();
     if (latestTotalShares > 0) {
-      sellStock(symbol, latestTotalShares);
+      sellStock(symbol, latestTotalShares, currentPrice);
       triggerFlash();
     }
   };
@@ -91,7 +91,7 @@ export default function StockTradeModal({ symbol, onClose }) {
     const { latestTotalShares } = getLatestState();
     const sharesToSell = latestTotalShares * 0.9;
     if (sharesToSell > 0) {
-      sellStock(symbol, sharesToSell);
+      sellStock(symbol, sharesToSell, currentPrice);
       triggerFlash();
     }
   };
@@ -100,7 +100,7 @@ export default function StockTradeModal({ symbol, onClose }) {
     const { latestTotalShares } = getLatestState();
     const sharesToSell = latestTotalShares * 0.5;
     if (sharesToSell > 0) {
-      sellStock(symbol, sharesToSell);
+      sellStock(symbol, sharesToSell, currentPrice);
       triggerFlash();
     }
   };
@@ -109,7 +109,7 @@ export default function StockTradeModal({ symbol, onClose }) {
     const { latestTotalShares } = getLatestState();
     const sharesToSell = latestTotalShares * 0.1;
     if (sharesToSell > 0) {
-      sellStock(symbol, sharesToSell);
+      sellStock(symbol, sharesToSell, currentPrice);
       triggerFlash();
     }
   };

@@ -1,7 +1,7 @@
 .dashboard {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   height: 100vh;
-  padding: 65px 12px 12px 12px;
+  padding: 0 12px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -106,29 +106,74 @@
   animation: slideDown 0.5s ease;
   display: flex;
   flex-direction: row;
-  gap: 16px;
-  align-items: flex-start;
+  gap: 4px;
+  align-items: center;
   justify-content: flex-start;
   width: 100%;
   align-self: stretch;
 }
 
+.headline-nav-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 1.2em;
+  width: 24px;
+  height: 100px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  padding: 0;
+}
+
+.headline-nav-btn:hover:not(:disabled) {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.headline-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.headline-nav-prev {
+  left: 0px;
+}
+
+.headline-nav-next {
+  left: 278px;
+}
+
 .newspaper-container {
   position: relative;
-  width: 310px;
-  min-width: 310px;
+  width: 300px;
+  height: 250px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .newspaper-img {
-  width: 100%;
-  height: auto;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
   display: block;
 }
 
 .headline-content {
   position: absolute;
-  top: 0;
+  top: 20px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -136,25 +181,27 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  padding-top: 18%;
-  padding-bottom: 28%;
+  padding-top: 20px;
+  padding-bottom: 0;
   box-sizing: border-box;
   z-index: 5;
 }
 
 .headline-text {
   color: #1a1a1a;
-  font-size: 0.85em;
-  line-height: 1.35;
+  font-size: 1.0em;
+  line-height: 1.3;
   margin: 0;
-  font-weight: 500;
+  font-weight: bold;
   font-family: 'Georgia', serif;
   word-wrap: break-word;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
-  padding: 0 15%;
+  padding-left: 18px;
+  padding-top: 45px;
+  padding-right: 18px;
   text-align: center;
   max-width: calc(85% - 10px);
 }
@@ -163,8 +210,9 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  align-items: flex-start;
+  align-items: center;
   padding-top: 4px;
+  margin-left: 0;
 }
 
 .current-year-display {
@@ -182,9 +230,9 @@
 }
 
 .current-year-value {
-  font-size: 1.6em;
+  font-size: 2.8em;
   font-weight: bold;
-  color: #667eea;
+  color: #fbbf24;
   font-family: 'Georgia', serif;
 }
 
@@ -193,15 +241,22 @@
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 0.85em;
+  padding: 12px 8px;
+  font-size: 0.75em;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  white-space: nowrap;
+  white-space: normal;
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: auto;
+  line-height: 1.2;
 }
 
 .time-travel-button:hover {
@@ -260,6 +315,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;
 }
 
 .section-title {
@@ -269,26 +325,27 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  text-align: left;
+  text-align: center;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   overflow-x: hidden;
   width: 100%;
+  max-width: 450px;
 }
 
 @media (max-width: 768px) {
   .dashboard {
-    padding: 65px 12px 12px 12px;
+    padding: 0 12px 12px 12px;
   }
 
   .dashboard-header {
     padding: 10px 12px;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
 
   .portfolio-info {
@@ -329,21 +386,23 @@
   }
 
   .newspaper-container {
-    width: 250px;
-    min-width: 250px;
+    width: 300px;
+    height: 250px;
   }
 
   .headline-content {
-    padding-top: 16%;
-    padding-bottom: 28%;
+    padding-top: 12%;
+    padding-bottom: 20%;
   }
 
   .headline-text {
-    font-size: 0.75em;
+    font-size: 1.0em;
     line-height: 1.3;
-    -webkit-line-clamp: 3;
-    padding: 0 12%;
-    max-width: 85%;
+    -webkit-line-clamp: 5;
+    padding-left: 18px;
+    padding-top: 45px;
+    padding-right: 18px;
+    max-width: calc(85% - 10px);
   }
 
   .year-controls {

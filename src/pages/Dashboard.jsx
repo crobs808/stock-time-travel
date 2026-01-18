@@ -6,6 +6,8 @@ import StockCard from '../components/StockCard';
 import StockTradeModal from '../components/StockTradeModal';
 import AchievementToaster from '../components/AchievementToaster';
 import AchievementsModal from '../components/AchievementsModal';
+import TipsToggle from '../components/TipsToggle';
+import TipsModal from '../components/TipsModal';
 import headlinesData from '../data/headlines.json';
 import '../styles/dashboard.css';
 
@@ -14,6 +16,7 @@ export default function Dashboard() {
   const [showAchievementsModal, setShowAchievementsModal] = useState(false);
   const [toasterAchievement, setToasterAchievement] = useState(null);
   const [lastAchievements, setLastAchievements] = useState(new Set());
+  const [headlineIndex, setHeadlineIndex] = useState(0);
 
   const {
     cash,
@@ -26,6 +29,8 @@ export default function Dashboard() {
     generateRandomYear,
     applyAnnualReturns,
     getPricesForYear,
+    getStockPriceForYear,
+    incrementClickCounter,
   } = useGameStore();
 
   // Monitor for new achievements
@@ -85,13 +90,38 @@ export default function Dashboard() {
     setSelectedStock(symbol);
   };
 
+  const getYearHeadlines = () => {
+    return headlinesData[currentYear?.toString()] || [];
+  };
+
+  const handlePrevHeadline = () => {
+    const headlines = getYearHeadlines();
+    if (headlines.length > 1) {
+      const newIndex = headlineIndex === 0 ? headlines.length - 1 : headlineIndex - 1;
+      setHeadlineIndex(newIndex);
+      useGameStore.setState({ currentHeadline: headlines[newIndex] });
+    }
+  };
+
+  const handleNextHeadline = () => {
+    const headlines = getYearHeadlines();
+    if (headlines.length > 1) {
+      const newIndex = (headlineIndex + 1) % headlines.length;
+      setHeadlineIndex(newIndex);
+      useGameStore.setState({ currentHeadline: headlines[newIndex] });
+    }
+  };
+
   const currentPrices = currentYear ? getPricesForYear(currentYear) : {};
   let portfolioValue = cash;
 
   Object.entries(holdings).forEach(([symbol, lots]) => {
     if (lots && lots.length > 0) {
-      const price = currentPrices[symbol] || 100;
       lots.forEach((lot) => {
+        // Extract purchase year from purchaseDate
+        const purchaseYear = new Date(lot.purchaseDate).getFullYear();
+        // Get the correct price accounting for IPO year
+        const price = getStockPriceForYear(symbol, currentYear, lot.costBasis, purchaseYear);
         portfolioValue += lot.shares * price;
       });
     }
@@ -102,7 +132,7 @@ export default function Dashboard() {
   const gainPercent = totalGain / startingValue;
 
   return (
-    <div className="dashboard">
+    <div className="dashboard" onClick={incrementClickCounter}>
       <div className="dashboard-header">
         <div className="portfolio-info">
           <div className="stat">
@@ -133,6 +163,7 @@ export default function Dashboard() {
           )}
         </div>
         <div className="header-right">
+          <TipsToggle />
           <button 
             className="trophy-button" 
             onClick={() => setShowAchievementsModal(true)}
@@ -145,18 +176,33 @@ export default function Dashboard() {
 
       <div className="headline-box">
         <div className="newspaper-container">
+          <button 
+            className="headline-nav-btn headline-nav-prev"
+            onClick={handlePrevHeadline}
+            disabled={getYearHeadlines().length <= 1}
+            title="Previous headline"
+          >
+            ◀
+          </button>
           <img src="/img/newspaper.png" alt="newspaper" className="newspaper-img" />
           <div className="headline-content">
             <p className="headline-text">{currentHeadline || `Year ${currentYear || '...'}: Markets in motion`}</p>
           </div>
+          <button 
+            className="headline-nav-btn headline-nav-next"
+            onClick={handleNextHeadline}
+            disabled={getYearHeadlines().length <= 1}
+            title="Next headline"
+          >
+            ▶
+          </button>
         </div>
         <div className="year-controls">
           <div className="current-year-display">
-            <span className="current-year-label">Current Year:</span>
-            <span className="current-year-value">{currentYear || '...'}</span>
+            <span className="current-year-value">It's {currentYear || '...'}</span>
           </div>
           <button className="time-travel-button" onClick={handleAdvanceYear}>
-            🌀 Time Travel!
+            Time<br />Travel 🌀
           </button>
         </div>
       </div>
@@ -223,6 +269,8 @@ export default function Dashboard() {
           onClose={() => setShowAchievementsModal(false)}
         />
       )}
+
+      <TipsModal />
     </div>
   );
 }
