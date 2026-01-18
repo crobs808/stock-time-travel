@@ -16,11 +16,11 @@ export default function Opening() {
       <div className="screen-content">
         <img src="/img/logo-inapp.png" alt="Stock Market Time Travel Logo" className="screen-logo" />
         <h1 className="main-title">Stock Market Time Travel</h1>
-        <p className="tagline">A game randomizing historical stock returns for fun & stock trading practice</p>
+        <p className="tagline">A game that teaches investment strategies by combining historical stock returns with time travel!</p>
         
         <div className="opening-description">
           <p>Travel back in time with $100 and learn how your investment choices compound over decades.</p>
-          <p>Make strategic decisions about stocks, index funds, and CDs—then watch history unfold.</p>
+          <p>Make strategic decisions about stocks, index funds, and CDs... then watch history unfold.</p>
         </div>
 
         <button className="start-button" onClick={handleStart}>

@@ -25,7 +25,7 @@ export default function ProTips() {
         <h1 className="main-title">Pro Tips:</h1>
         
         <div className="tips-list">
-          <p>History tends to repeat itself, but does not always</p>
+          <p>History tends to repeat itself, but not always</p>
 
           <p>There will be ups & downs</p>
 

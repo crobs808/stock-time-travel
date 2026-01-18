@@ -6,6 +6,7 @@ import StockCard from '../components/StockCard';
 import StockTradeModal from '../components/StockTradeModal';
 import AchievementToaster from '../components/AchievementToaster';
 import AchievementsModal from '../components/AchievementsModal';
+import InvestmentsModal from '../components/InvestmentsModal';
 import TipsToggle from '../components/TipsToggle';
 import TipsModal from '../components/TipsModal';
 import headlinesData from '../data/headlines.json';
@@ -165,6 +166,13 @@ export default function Dashboard() {
         <div className="header-right">
           <TipsToggle />
           <button 
+            className="investments-button" 
+            onClick={() => useGameStore.getState().openInvestmentsModal()}
+            title="View investments"
+          >
+            📊
+          </button>
+          <button 
             className="trophy-button" 
             onClick={() => setShowAchievementsModal(true)}
             title="View achievements"
@@ -269,6 +277,8 @@ export default function Dashboard() {
           onClose={() => setShowAchievementsModal(false)}
         />
       )}
+
+      <InvestmentsModal />
 
       <TipsModal />
     </div>

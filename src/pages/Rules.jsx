@@ -25,7 +25,7 @@ export default function Rules() {
         <div className="rules-list">
           <p>Use your fake $100 to buy shares of the stocks offered</p>
 
-          <p>Push the arrow by the randomized year to take a journey to the returns from a randomized year from the 2000</p>
+          <p>Tap the 'Time Travel' button to take a journey into the past and witness your invesment skills at work over time.</p>
 
           <p>Rinse & Repeat</p>
         </div>

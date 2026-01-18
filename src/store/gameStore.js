@@ -34,6 +34,9 @@ export const useGameStore = create((set, get) => ({
   showTipsModal: false,
   currentTipIndex: 0,
 
+  // Investments modal
+  showInvestmentsModal: false,
+
   // Headlines loaded from JSON
   headlines: headlinesData,
 
@@ -60,6 +63,10 @@ export const useGameStore = create((set, get) => ({
     return { clickCounter: newCounter };
   }),
   closeTipsModal: () => set({ showTipsModal: false }),
+  
+  // Investments modal actions
+  openInvestmentsModal: () => set({ showInvestmentsModal: true }),
+  closeInvestmentsModal: () => set({ showInvestmentsModal: false }),
 
   // Start a new game
   startGame: (taxBracket = 'middle') => set((state) => {
