@@ -5,7 +5,7 @@ import '../styles/modals.css';
 
 export default function SellModal({ stock, holdings, onClose, currentPrice }) {
   const [shares, setShares] = useState('');
-  const { sellStock, taxToggle, taxState } = useGameStore();
+  const { sellStock, taxState } = useGameStore();
 
   const numShares = parseFloat(shares) || 0;
   const totalSharesToSell = holdings.reduce((sum, lot) => sum + lot.shares, 0);
@@ -80,19 +80,10 @@ export default function SellModal({ stock, holdings, onClose, currentPrice }) {
               <span>Gross Proceeds:</span>
               <span>{formatCurrency(proceeds)}</span>
             </div>
-
-            {taxToggle && (
-              <>
-                <div className="calc-row warning">
-                  <span>Capital Gains Tax:</span>
-                  <span>-{formatCurrency(totalTax)}</span>
-                </div>
-                <div className="calc-row highlight">
-                  <span>After-Tax Proceeds:</span>
-                  <span>{formatCurrency(afterTaxProceeds)}</span>
-                </div>
-              </>
-            )}
+            <div className="calc-row highlight">
+              <span>After-Tax Proceeds:</span>
+              <span>{formatCurrency(afterTaxProceeds)}</span>
+            </div>
 
             {!canSell && numShares > 0 && (
               <div className="error-message">Cannot sell more than {totalSharesToSell.toFixed(2)} shares</div>

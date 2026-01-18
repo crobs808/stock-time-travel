@@ -4,7 +4,6 @@ import { stocks, stockReturns } from '../data/stockReturns';
 import { formatCurrency, formatPercent } from '../utils/taxCalculations';
 import StockCard from '../components/StockCard';
 import StockTradeModal from '../components/StockTradeModal';
-import TaxToggle from '../components/TaxToggle';
 import AchievementToaster from '../components/AchievementToaster';
 import AchievementsModal from '../components/AchievementsModal';
 import headlinesData from '../data/headlines.json';
@@ -22,7 +21,6 @@ export default function Dashboard() {
     currentYear,
     currentHeadline,
     yearsInvested,
-    taxToggle,
     unlockedStocks,
     achievements,
     generateRandomYear,
@@ -142,7 +140,6 @@ export default function Dashboard() {
           >
             🏆
           </button>
-          <TaxToggle />
         </div>
       </div>
 
@@ -165,27 +162,44 @@ export default function Dashboard() {
       </div>
 
       <div className="stocks-grid">
-        <h2>Available Investments</h2>
-        <div className="grid">
-          {stocks
-            .sort((a, b) => {
-              // Premium stocks first (those that are locked)
-              const aIsPremium = !unlockedStocks.has(a.symbol);
-              const bIsPremium = !unlockedStocks.has(b.symbol);
-              if (aIsPremium !== bIsPremium) return aIsPremium ? -1 : 1;
-              return 0;
-            })
-            .map((stock) => {
-              const isUnlocked = unlockedStocks.has(stock.symbol);
-              return (
-                <StockCard
-                  key={stock.symbol}
-                  stock={stock}
-                  isUnlocked={isUnlocked}
-                  onClick={() => handleStockClick(stock.symbol)}
-                />
-              );
-            })}
+        {/* Premium Stocks Section */}
+        <div className="stocks-section">
+          <h3 className="section-title">Premium Investments</h3>
+          <div className="grid">
+            {stocks
+              .filter((stock) => stock.premium)
+              .map((stock) => {
+                const isUnlocked = unlockedStocks.has(stock.symbol);
+                return (
+                  <StockCard
+                    key={stock.symbol}
+                    stock={stock}
+                    isUnlocked={isUnlocked}
+                    onClick={() => handleStockClick(stock.symbol)}
+                  />
+                );
+              })}
+          </div>
+        </div>
+
+        {/* Standard Stocks Section */}
+        <div className="stocks-section">
+          <h3 className="section-title">Other Investments</h3>
+          <div className="grid">
+            {stocks
+              .filter((stock) => !stock.premium)
+              .map((stock) => {
+                const isUnlocked = unlockedStocks.has(stock.symbol);
+                return (
+                  <StockCard
+                    key={stock.symbol}
+                    stock={stock}
+                    isUnlocked={isUnlocked}
+                    onClick={() => handleStockClick(stock.symbol)}
+                  />
+                );
+              })}
+          </div>
         </div>
       </div>
 

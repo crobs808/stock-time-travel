@@ -17,7 +17,6 @@ export default function StockDetail() {
     cash,
     holdings,
     currentYear,
-    taxToggle,
   } = useGameStore();
 
   const stock = stocks.find((s) => s.symbol === symbol);

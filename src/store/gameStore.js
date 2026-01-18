@@ -8,7 +8,6 @@ export const useGameStore = create((set, get) => ({
   currentYear: null,
   currentHeadline: null,
   cash: 100,
-  taxToggle: false,
   gameStarted: false,
   currentScreen: 'opening', // opening, rules, pro-tips, game, stock-detail
   selectedStock: null,
@@ -35,7 +34,6 @@ export const useGameStore = create((set, get) => ({
   // Actions
   setCurrentScreen: (screen) => set({ currentScreen: screen }),
   setSelectedStock: (stock) => set({ selectedStock: stock }),
-  setTaxToggle: (toggle) => set({ taxToggle: toggle }),
   setTaxBracket: (bracket) => set((state) => ({
     taxState: { ...state.taxState, taxBracket: bracket },
   })),
@@ -297,7 +295,6 @@ export const useGameStore = create((set, get) => ({
     currentYear: null,
     currentHeadline: null,
     cash: 100,
-    taxToggle: false,
     gameStarted: false,
     currentScreen: 'opening',
     selectedStock: null,
