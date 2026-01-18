@@ -1,0 +1,72 @@
+.achievement-toaster {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  z-index: 2000;
+  animation: toasterSlideIn 0.4s ease, toasterSlideOut 0.4s ease 4.6s forwards;
+  max-width: 90%;
+  width: 320px;
+}
+
+@keyframes toasterSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes toasterSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px);
+  }
+}
+
+.toaster-content {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.toaster-emoji {
+  font-size: 1.8em;
+  flex-shrink: 0;
+}
+
+.toaster-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toaster-name {
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.toaster-desc {
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .achievement-toaster {
+    width: calc(100% - 40px);
+    max-width: none;
+  }
+}

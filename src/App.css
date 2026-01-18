@@ -1,0 +1,13 @@
+/* Main app styles - imported from screens.css and other component styles */
+@import './styles/screens.css';
+@import './styles/dashboard.css';
+@import './styles/components.css';
+@import './styles/stock-detail.css';
+@import './styles/modals.css';
+@import './styles/achievements.css';
+@import './styles/menu.css';
+
+@font-face {
+  font-family: 'Pacifico';
+  src: url('/PacificoRegular.ttf') format('truetype');
+}

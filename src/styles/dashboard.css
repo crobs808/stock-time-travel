@@ -1,0 +1,364 @@
+.dashboard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 100vh;
+  padding: 65px 12px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow-y: auto;
+  margin: 0;
+}
+
+.dashboard-header {
+  background: white;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.portfolio-info {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  font-size: 0.85em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trophy-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.4em;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.trophy-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.trophy-button:active {
+  transform: scale(0.95);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat label {
+  font-size: 0.7em;
+  color: #999;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.stat span {
+  font-size: 1em;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.stat span.positive {
+  color: #16a34a;
+}
+
+.stat span.negative {
+  color: #dc2626;
+}
+
+.stat.highlight span {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.headline-box {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-bottom: 12px;
+  box-shadow: none;
+  animation: slideDown 0.5s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  align-self: stretch;
+}
+
+.newspaper-container {
+  position: relative;
+  width: 360px;
+  min-width: 360px;
+  flex-shrink: 0;
+}
+
+.newspaper-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.headline-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  padding-top: 18%;
+  padding-bottom: 28%;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.headline-text {
+  color: #1a1a1a;
+  font-size: 0.85em;
+  line-height: 1.35;
+  margin: 0;
+  font-weight: 500;
+  font-family: 'Georgia', serif;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  padding: 0 15%;
+  text-align: center;
+  max-width: 85%;
+}
+
+.year-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.current-year-display {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.current-year-label {
+  font-size: 0.75em;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.current-year-value {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #667eea;
+  font-family: 'Georgia', serif;
+}
+
+.time-travel-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.85em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.time-travel-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.time-travel-button:active {
+  transform: scale(0.98);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stocks-grid {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.stocks-grid h2 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 0.95em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 65px 12px 12px 12px;
+  }
+
+  .dashboard-header {
+    padding: 10px 12px;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .portfolio-info {
+    gap: 10px;
+    width: 100%;
+    order: 2;
+  }
+
+  .tax-toggle {
+    order: 1;
+    justify-self: flex-end;
+  }
+
+  .stat span {
+    font-size: 0.9em;
+  }
+
+  .stocks-grid {
+    padding: 10px;
+    margin-bottom: 8px;
+    flex: 1;
+  }
+
+  .stocks-grid h2 {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    gap: 6px;
+  }
+
+  .headline-box {
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .newspaper-container {
+    width: 300px;
+    min-width: 300px;
+  }
+
+  .headline-content {
+    padding-top: 16%;
+    padding-bottom: 28%;
+  }
+
+  .headline-text {
+    font-size: 0.75em;
+    line-height: 1.3;
+    -webkit-line-clamp: 3;
+    padding: 0 12%;
+    max-width: 85%;
+  }
+
+  .year-controls {
+    gap: 8px;
+    padding-top: 2px;
+  }
+
+  .current-year-label {
+    font-size: 0.7em;
+  }
+
+  .current-year-value {
+    font-size: 1.3em;
+  }
+
+  .time-travel-button {
+    padding: 8px 10px;
+    font-size: 0.75em;
+  }
+}
+
+/* Desktop: constrain to mobile-like width */
+@media (min-width: 769px) {
+  .dashboard {
+    max-width: 520px;
+    margin: 0 auto;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dashboard-header {
+    padding: 12px 15px;
+  }
+
+  .stocks-grid {
+    padding: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard {
+    max-width: 540px;
+  }
+}

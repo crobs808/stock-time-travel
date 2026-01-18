@@ -1,0 +1,141 @@
+.achievements-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 90%;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.achievements-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.achievements-modal .modal-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.4em;
+}
+
+.achievements-modal .close-button {
+  background: none;
+  border: none;
+  font-size: 1.6em;
+  cursor: pointer;
+  color: #999;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.achievements-modal .close-button:hover {
+  color: #333;
+}
+
+.achievements-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+}
+
+.achievement-item.unlocked {
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+  border-color: #10b981;
+}
+
+.achievement-item.locked {
+  opacity: 0.6;
+}
+
+.achievement-emoji {
+  font-size: 1.8em;
+  flex-shrink: 0;
+}
+
+.achievement-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.achievement-name {
+  font-weight: 700;
+  color: #333;
+  font-size: 0.95em;
+}
+
+.achievement-desc {
+  font-size: 0.85em;
+  color: #999;
+}
+
+.achievement-status {
+  font-size: 1.2em;
+  flex-shrink: 0;
+  color: #667eea;
+}
+
+.achievement-item.locked .achievement-status {
+  color: #999;
+}
+
+@media (max-width: 600px) {
+  .achievements-modal {
+    max-height: 70vh;
+    max-width: 95%;
+  }
+
+  .achievements-modal .modal-header {
+    padding: 16px;
+  }
+
+  .achievements-modal .modal-header h2 {
+    font-size: 1.2em;
+  }
+
+  .achievements-list {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .achievement-item {
+    padding: 10px;
+  }
+}

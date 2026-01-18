@@ -1,0 +1,35 @@
+.game-menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.menu-button {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+  background: #667eea;
+  color: white;
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .game-menu {
+    top: 70px;
+    right: 10px;
+  }
+
+  .menu-button {
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+}

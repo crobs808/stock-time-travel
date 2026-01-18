@@ -1,0 +1,110 @@
+.tax-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tax-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.tax-toggle input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.stock-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid #5568d3;
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.stock-card:hover:not(.locked) {
+  border-color: #ffffff;
+  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.stock-card.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stock-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.symbol {
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+}
+
+.lock-badge {
+  background: #ffc107;
+  color: #333;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.7em;
+  font-weight: 600;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.stock-card-body {
+  flex: 1;
+}
+
+.name {
+  display: none;
+}
+
+.type {
+  display: none;
+}
+
+.click-hint {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .stock-card {
+    padding: 5px;
+    min-height: 60px;
+  }
+
+  .symbol {
+    font-size: 0.95em;
+  }
+
+  .tax-toggle label {
+    font-size: 0.8em;
+  }
+
+  .tax-toggle input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+}
