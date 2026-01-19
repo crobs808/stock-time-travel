@@ -16,7 +16,7 @@ export default function TipsModal() {
           <img src="/img/jay.png" alt="Jay" className="tips-modal-image" />
           <div className="tips-modal-text-section">
             <h2 className="tips-modal-title">Jay's Pro Tips</h2>
-            <p className="tips-modal-text">{currentTip}</p>
+            <p className="tips-modal-text">"{currentTip}" <br/><span className="tips-quote-attribution">- Jay</span></p>
           </div>
         </div>
         
@@ -25,7 +25,7 @@ export default function TipsModal() {
             Cool, thanks!
           </button>
           <button className="tips-next-button" onClick={nextTip} title="Next tip">
-            →
+            ➡️
           </button>
         </div>
       </div>

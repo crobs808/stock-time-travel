@@ -20,8 +20,10 @@
   width: 100%;
   padding: 24px;
   animation: slideIn 0.3s ease;
-  text-align: center;
-}
+  text-align: center;  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;}
 
 @keyframes slideIn {
   from {
@@ -52,7 +54,7 @@
   width: 200px;
   height: 200px;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
 }
@@ -67,6 +69,16 @@
   line-height: 1.6;
   margin: 0 0 20px 0;
   font-family: 'Georgia', serif;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.tips-quote-attribution {
+  display: block;
+  text-align: right;
+  font-style: italic;
+  margin-top: 8px;
+  font-weight: 600;
 }
 
 .tips-modal-button {
