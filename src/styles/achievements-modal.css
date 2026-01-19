@@ -39,15 +39,16 @@
 .achievements-modal .close-button {
   background: none;
   border: none;
-  font-size: 1.6em;
+  font-size: 1.2em;
   cursor: pointer;
   color: #999;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: color 0.2s;
+  padding: 0;
 }
 
 .achievements-modal .close-button:hover {
