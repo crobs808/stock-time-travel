@@ -66,6 +66,11 @@ export const useGameStore = create((set, get) => ({
   }),
   closeTipsModal: () => set({ showTipsModal: false }),
   
+  // Advance to next tip (loops at end)
+  nextTip: () => set((state) => ({
+    currentTipIndex: (state.currentTipIndex + 1) % 13,
+  })),
+  
   // Investments modal actions
   openInvestmentsModal: () => set({ showInvestmentsModal: true }),
   closeInvestmentsModal: () => set({ showInvestmentsModal: false }),

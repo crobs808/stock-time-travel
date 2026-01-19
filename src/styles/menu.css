@@ -1,9 +1,26 @@
 .game-menu {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   padding: 0;
   z-index: 100;
+  gap: 20px;
+}
+
+.game-mode-display {
+  font-size: 1em;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.menu-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-left: auto;
 }
 
 .menu-button {
@@ -21,6 +38,17 @@
   background: #667eea;
   color: white;
   transform: scale(1.05);
+}
+
+.test-tips {
+  background: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.test-tips:hover {
+  background: #ffc107;
+  color: white;
 }
 
 @media (max-width: 600px) {

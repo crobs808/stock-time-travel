@@ -33,15 +33,15 @@ export default function ModeSelection() {
             <div className="mode-description">Jump to random years and test your skills unpredictably</div>
           </button>
         </div>
-      </div>
 
-      <div className="progress-indicator">
-        <span className="progress-text">4 of 4</span>
-        <div className="progress-dots">
-          <div className="dot active"></div>
-          <div className="dot active"></div>
-          <div className="dot active"></div>
-          <div className="dot active"></div>
+        <div className="progress-indicator">
+          <span className="progress-text">4 of 4</span>
+          <div className="progress-dots">
+            <div className="dot active"></div>
+            <div className="dot active"></div>
+            <div className="dot active"></div>
+            <div className="dot active"></div>
+          </div>
         </div>
       </div>
     </div>
