@@ -7,8 +7,8 @@ export default function Opening() {
   const setCurrentScreen = useGameStore((state) => state.setCurrentScreen);
 
   const handleStart = () => {
-    setCurrentScreen('mode-selection');
-    navigate('/mode-selection');
+    setCurrentScreen('rules');
+    navigate('/rules');
   };
 
   return (
@@ -26,6 +26,16 @@ export default function Opening() {
         <button className="start-button" onClick={handleStart}>
           Start Game
         </button>
+
+        <div className="progress-indicator">
+          <span className="progress-text">1 of 4</span>
+          <div className="progress-dots">
+            <div className="dot active"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+          </div>
+        </div>
       </div>
     </div>
   );

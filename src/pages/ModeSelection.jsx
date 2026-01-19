@@ -34,6 +34,16 @@ export default function ModeSelection() {
           </button>
         </div>
       </div>
+
+      <div className="progress-indicator">
+        <span className="progress-text">4 of 4</span>
+        <div className="progress-dots">
+          <div className="dot active"></div>
+          <div className="dot active"></div>
+          <div className="dot active"></div>
+          <div className="dot active"></div>
+        </div>
+      </div>
     </div>
   );
 }

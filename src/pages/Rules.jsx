@@ -38,6 +38,16 @@ export default function Rules() {
             Next →
           </button>
         </div>
+
+        <div className="progress-indicator">
+          <span className="progress-text">2 of 4</span>
+          <div className="progress-dots">
+            <div className="dot active"></div>
+            <div className="dot active"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+          </div>
+        </div>
       </div>
     </div>
   );

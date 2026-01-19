@@ -12,10 +12,8 @@ export default function ProTips() {
   };
 
   const handleStart = () => {
-    const startGame = useGameStore.getState().startGame;
-    startGame('middle');
-    setCurrentScreen('game');
-    navigate('/game');
+    setCurrentScreen('mode-selection');
+    navigate('/mode-selection');
   };
 
   return (
@@ -41,8 +39,18 @@ export default function ProTips() {
             ← Back
           </button>
           <button className="primary-button" onClick={handleStart}>
-            Start Playing →
+            Choose Mode →
           </button>
+        </div>
+
+        <div className="progress-indicator">
+          <span className="progress-text">3 of 4</span>
+          <div className="progress-dots">
+            <div className="dot active"></div>
+            <div className="dot active"></div>
+            <div className="dot active"></div>
+            <div className="dot"></div>
+          </div>
         </div>
       </div>
     </div>
