@@ -24,8 +24,8 @@
 
 .menu-button {
   background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
+  color: #0f5a2a;
+  border: 2px solid #0f5a2a;
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
@@ -34,7 +34,7 @@
 }
 
 .menu-button:hover {
-  background: #667eea;
+  background: #0f5a2a;
   color: white;
   transform: scale(1.05);
 }

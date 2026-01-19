@@ -82,7 +82,7 @@
 }
 
 .tips-modal-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -91,12 +91,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(15, 90, 42, 0.3);
 }
 
 .tips-modal-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 4px 12px rgba(15, 90, 42, 0.5);
 }
 
 .tips-modal-button:active {
@@ -111,8 +111,8 @@
 
 .tips-next-button {
   background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
+  color: #0f5a2a;
+  border: 2px solid #0f5a2a;
   width: 40px;
   height: 40px;
   border-radius: 8px;
@@ -127,7 +127,7 @@
 }
 
 .tips-next-button:hover {
-  background: #667eea;
+  background: #0f5a2a;
   color: white;
   transform: translateX(2px);
 }

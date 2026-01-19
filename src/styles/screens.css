@@ -16,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   min-height: 100%;
   width: 100%;
   color: #333;
@@ -49,12 +49,14 @@ body {
   border-radius: 16px;
   padding: 30px 20px;
   width: 100%;
-  max-width: 100%;
+  max-width: 500px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   text-align: center;
   height: auto;
-  max-height: 95vh;
+  max-height: 85vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Logo */
@@ -73,10 +75,10 @@ body {
   font-size: 2.5em;
   font-weight: bold;
   margin-bottom: 12px;
-  color: #667eea;
+  color: #0f5a2a;
   font-family: 'Pacifico', cursive;
   font-style: italic;
-  line-height: 1.1;
+  line-height: 1.4;
 }
 
 .tagline {
@@ -144,7 +146,7 @@ body {
 }
 
 .start-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   color: white;
   padding: 15px 30px;
   font-size: 1.1em;
@@ -153,17 +155,17 @@ body {
 
 .start-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 16px rgba(15, 90, 42, 0.4);
 }
 
 .primary-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   color: white;
 }
 
 .primary-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 5px 15px rgba(15, 90, 42, 0.4);
 }
 
 .secondary-button {

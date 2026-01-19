@@ -1,5 +1,5 @@
 .stock-detail {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   min-height: 100vh;
   padding: 30px;
   color: white;
@@ -15,7 +15,7 @@
 
 .back-button {
   background: white;
-  color: #667eea;
+  color: #0f5a2a;
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
@@ -41,12 +41,12 @@
 .detail-header h1 {
   font-size: 2.5em;
   margin-bottom: 15px;
-  color: #667eea;
+  color: #0f5a2a;
 }
 
 .type-badge {
   display: inline-block;
-  background: #667eea;
+  background: #0f5a2a;
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
@@ -92,7 +92,7 @@
 }
 
 .holdings-section h2 {
-  color: #667eea;
+  color: #0f5a2a;
   margin-bottom: 25px;
   font-size: 1.5em;
 }
@@ -106,7 +106,7 @@
 
 .holding-stat {
   background: #f9f9f9;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #0f5a2a;
   padding: 20px;
   border-radius: 6px;
 }
@@ -125,7 +125,7 @@
   display: block;
   font-size: 1.5em;
   font-weight: bold;
-  color: #667eea;
+  color: #0f5a2a;
 }
 
 .holding-stat .value.positive {
@@ -199,7 +199,7 @@
 }
 
 .trading-section h2 {
-  color: #667eea;
+  color: #0f5a2a;
   margin-bottom: 25px;
   font-size: 1.5em;
 }
@@ -216,7 +216,7 @@
 }
 
 .cash-info strong {
-  color: #667eea;
+  color: #0f5a2a;
   font-size: 1.2em;
 }
 

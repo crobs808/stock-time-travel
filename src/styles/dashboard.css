@@ -1,7 +1,7 @@
 .dashboard {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  height: 100vh;
-  padding: 0 12px;
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
+  min-height: 100vh;
+  padding: 0 12px 6px 12px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -15,19 +15,19 @@
 .dashboard-header {
   background: white;
   border-radius: 8px;
-  padding: 12px 15px;
-  margin-bottom: 12px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
 }
 
 .portfolio-info {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
   font-size: 0.85em;
 }
@@ -35,19 +35,19 @@
 .header-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-left: auto;
 }
 
 .trophy-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   border: none;
   border-radius: 8px;
   font-size: 1.4em;
@@ -58,7 +58,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 8px rgba(15, 90, 42, 0.2);
 }
 
 .trophy-button:hover {
@@ -71,7 +71,7 @@
 }
 
 .investments-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   border: none;
   border-radius: 8px;
   font-size: 1.4em;
@@ -82,7 +82,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 8px rgba(15, 90, 42, 0.2);
 }
 
 .investments-button:hover {
@@ -97,21 +97,21 @@
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .stat label {
-  font-size: 0.7em;
+  font-size: 0.65em;
   color: #999;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
 }
 
 .stat span {
   font-size: 1em;
   font-weight: bold;
-  color: #667eea;
+  color: #0f5a2a;
 }
 
 .stat span.positive {
@@ -123,7 +123,7 @@
 }
 
 .stat.highlight span {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -133,7 +133,7 @@
   background: transparent;
   border: none;
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   box-shadow: none;
   animation: slideDown 0.5s ease;
   display: flex;
@@ -146,7 +146,7 @@
 }
 
 .headline-nav-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   border: none;
   border-radius: 4px;
   color: white;
@@ -159,7 +159,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(15, 90, 42, 0.3);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -241,45 +241,45 @@
 .year-controls {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
-  padding-top: 4px;
+  padding-top: 2px;
   margin-left: 0;
 }
 
 .current-year-display {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .current-year-label {
-  font-size: 0.75em;
+  font-size: 0.7em;
   color: #666;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 .current-year-value {
-  font-size: 2.8em;
+  font-size: 2.4em;
   font-weight: bold;
   color: #fbbf24;
   font-family: 'Georgia', serif;
 }
 
 .time-travel-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 12px 8px;
+  padding: 10px 6px;
   font-size: 0.75em;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: normal;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(15, 90, 42, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   display: flex;
@@ -325,20 +325,19 @@
 .stocks-grid {
   background: white;
   border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 10px;
+  padding: 8px;
+  margin-bottom: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   box-sizing: border-box;
 }
 
 .stocks-grid h2 {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   color: #333;
   font-size: 0.95em;
 }
@@ -346,7 +345,7 @@
 .stocks-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
 }
 

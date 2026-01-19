@@ -3,11 +3,11 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
   color: white;
   padding: 16px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 20px rgba(15, 90, 42, 0.4);
   z-index: 2000;
   animation: toasterSlideIn 0.4s ease, toasterSlideOut 0.4s ease 4.6s forwards;
   max-width: 90%;
