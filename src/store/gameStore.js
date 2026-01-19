@@ -9,9 +9,11 @@ export const useGameStore = create((set, get) => ({
   currentHeadline: null,
   cash: 100,
   gameStarted: false,
-  currentScreen: 'opening', // opening, rules, pro-tips, game, stock-detail
+  currentScreen: 'opening', // opening, mode-selection, rules, pro-tips, game, stock-detail
   selectedStock: null,
   yearsInvested: 0,
+  timeTravelMode: null, // 'sequential' or 'chaotic'
+  currentSequentialYear: 1981, // For sequential mode tracking
 
   // Portfolio tracking (lot-based for FIFO)
   holdings: {}, // { AAPL: [{ id, shares, purchaseDate, costBasis }, ...], ... }
@@ -68,6 +70,13 @@ export const useGameStore = create((set, get) => ({
   openInvestmentsModal: () => set({ showInvestmentsModal: true }),
   closeInvestmentsModal: () => set({ showInvestmentsModal: false }),
 
+  // Time travel mode selection
+  setTimeTravelMode: (mode) => set({ 
+    timeTravelMode: mode,
+    currentSequentialYear: 1981,
+    currentScreen: 'game'
+  }),
+
   // Start a new game
   startGame: (taxBracket = 'middle') => set((state) => {
     const year = Math.floor(Math.random() * 40) + 1981; // 1981 to 2020
@@ -78,12 +87,14 @@ export const useGameStore = create((set, get) => ({
     
     return {
       gameStarted: true,
-      currentScreen: 'game',
+      currentScreen: 'opening',
       cash: 100,
-      currentYear: year,
+      currentYear: null,
       currentHeadline: randomHeadline,
       holdings: {},
-      yearsInvested: 1,
+      yearsInvested: 0,
+      timeTravelMode: null,
+      currentSequentialYear: 1981,
       taxState: {
         ytdShortTermGains: 0,
         ytdLongTermGains: 0,
@@ -96,11 +107,26 @@ export const useGameStore = create((set, get) => ({
 
   // Generate random year (1981-2020)
   generateRandomYear: () => {
-    const year = Math.floor(Math.random() * 40) + 1981; // 1981 to 2020
-    set((state) => ({
-      currentYear: year,
-      yearsInvested: state.yearsInvested + 1,
-    }));
+    const state = get();
+    let year;
+    
+    if (state.timeTravelMode === 'sequential') {
+      year = state.currentSequentialYear;
+      // Advance to next year for next time, or wrap back to 1981 if at 2020
+      const nextYear = year === 2020 ? 1981 : year + 1;
+      set((s) => ({
+        currentYear: year,
+        currentSequentialYear: nextYear,
+        yearsInvested: s.yearsInvested + 1,
+      }));
+    } else {
+      // Chaotic mode - random year
+      year = Math.floor(Math.random() * 40) + 1981; // 1981 to 2020
+      set((s) => ({
+        currentYear: year,
+        yearsInvested: s.yearsInvested + 1,
+      }));
+    }
     return year;
   },
 
@@ -146,6 +172,8 @@ export const useGameStore = create((set, get) => ({
     let totalProceeds = 0;
     let lotsToRemove = [];
     let updatedLots = [...lots];
+    let ytdShortTermGains = state.taxState.ytdShortTermGains;
+    let ytdLongTermGains = state.taxState.ytdLongTermGains;
 
     for (let i = 0; i < updatedLots.length && sharesToSell > 0; i++) {
       const lot = updatedLots[i];
@@ -167,9 +195,9 @@ export const useGameStore = create((set, get) => ({
       const isLongTerm = daysHeld >= 365;
 
       if (isLongTerm) {
-        state.taxState.ytdLongTermGains += gain;
+        ytdLongTermGains += gain;
       } else {
-        state.taxState.ytdShortTermGains += gain;
+        ytdShortTermGains += gain;
       }
 
       if (sharesToSellFromLot === lot.shares) {
@@ -196,6 +224,11 @@ export const useGameStore = create((set, get) => ({
     return {
       cash: state.cash + totalProceeds,
       holdings: newHoldings,
+      taxState: {
+        ...state.taxState,
+        ytdShortTermGains,
+        ytdLongTermGains,
+      },
     };
   }),
 

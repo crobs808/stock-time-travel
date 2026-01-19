@@ -7,8 +7,8 @@ export default function Opening() {
   const setCurrentScreen = useGameStore((state) => state.setCurrentScreen);
 
   const handleStart = () => {
-    setCurrentScreen('rules');
-    navigate('/rules');
+    setCurrentScreen('mode-selection');
+    navigate('/mode-selection');
   };
 
   return (

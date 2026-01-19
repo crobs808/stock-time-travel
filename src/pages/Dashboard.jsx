@@ -46,8 +46,13 @@ export default function Dashboard() {
 
   // Initialize year and headline if not set
   useEffect(() => {
-    if (!currentYear) {
-      const year = Math.floor(Math.random() * 40) + 1981;
+    if (!currentYear && useGameStore.getState().timeTravelMode) {
+      let year;
+      if (useGameStore.getState().timeTravelMode === 'sequential') {
+        year = 1981; // Start at 1981 for sequential mode
+      } else {
+        year = Math.floor(Math.random() * 40) + 1981;
+      }
       const yearHeadlines = headlinesData[year.toString()] || [];
       const randomHeadline = yearHeadlines.length > 0 
         ? yearHeadlines[Math.floor(Math.random() * yearHeadlines.length)]
@@ -55,7 +60,8 @@ export default function Dashboard() {
       useGameStore.setState({ 
         currentYear: year,
         currentHeadline: randomHeadline,
-        yearsInvested: 1
+        yearsInvested: 1,
+        currentSequentialYear: 1982, // Set next year for sequential mode
       });
     }
   }, [currentYear]);
