@@ -184,16 +184,15 @@ export const useGameStore = create((set, get) => ({
       const lot = updatedLots[i];
       const sharesToSellFromLot = Math.min(sharesToSell, lot.shares);
 
-      // Calculate proceeds with year-aware pricing
+      // Always recalculate price using year-aware logic, don't rely on passed currentPrice
       const purchaseYear = new Date(lot.purchaseDate).getFullYear();
       const get = useGameStore.getState();
-      const yearAwarePrice = get.getStockPriceForYear(symbol, state.currentYear, lot.costBasis, purchaseYear);
-      const price = currentPrice || yearAwarePrice || lot.costBasis;
-      const proceeds = sharesToSellFromLot * price;
+      const salePrice = get.getStockPriceForYear(symbol, state.currentYear, lot.costBasis, purchaseYear);
+      const proceeds = sharesToSellFromLot * salePrice;
       totalProceeds += proceeds;
 
       // Track gain/loss
-      const gain = (price - lot.costBasis) * sharesToSellFromLot;
+      const gain = (salePrice - lot.costBasis) * sharesToSellFromLot;
       const purchaseDate = new Date(lot.purchaseDate);
       const saleDate = new Date();
       const daysHeld = Math.floor((saleDate - purchaseDate) / (1000 * 60 * 60 * 24));
