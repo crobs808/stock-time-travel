@@ -169,8 +169,10 @@ export default function Dashboard() {
             </div>
           )}
         </div>
-        <div className="header-right">
+        <div className="header-left">
           <TipsToggle />
+        </div>
+        <div className="header-right">
           <button 
             className="investments-button" 
             onClick={() => useGameStore.getState().openInvestmentsModal()}

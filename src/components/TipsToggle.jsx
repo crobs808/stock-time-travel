@@ -6,7 +6,7 @@ export default function TipsToggle() {
 
   return (
     <div className="tips-toggle-container">
-      <label className="tips-toggle-label">Tips Enabled</label>
+      <label className="tips-toggle-label">Auto Tips?</label>
       <button
         className={`tips-toggle ${tipsEnabled ? 'enabled' : 'disabled'}`}
         onClick={toggleTips}

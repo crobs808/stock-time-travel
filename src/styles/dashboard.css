@@ -32,6 +32,13 @@
   font-size: 0.85em;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
 .header-right {
   display: flex;
   align-items: center;
