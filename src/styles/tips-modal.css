@@ -41,13 +41,24 @@
   font-weight: 700;
 }
 
+.tips-modal-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
 .tips-modal-image {
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   border-radius: 8px;
-  margin-bottom: 12px;
   object-fit: cover;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.tips-modal-text-section {
+  flex: 1;
 }
 
 .tips-modal-text {
