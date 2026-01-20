@@ -221,6 +221,27 @@
   z-index: 5;
 }
 
+.headline-refresh-btn {
+  position: absolute;
+  bottom: 40px;
+  right: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  padding: 5px;
+}
+
+.headline-refresh-btn:hover:not(:disabled) {
+  opacity: 1;
+}
+
+.headline-refresh-btn:disabled {
+  cursor: not-allowed;
+}
+
 .headline-text {
   color: #1a1a1a;
   font-size: 1.0em;

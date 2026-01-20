@@ -203,26 +203,18 @@ export default function Dashboard() {
 
       <div className="headline-box">
         <div className="newspaper-container">
-          <button 
-            className="headline-nav-btn headline-nav-prev"
-            onClick={handlePrevHeadline}
-            disabled={getYearHeadlines().length <= 1}
-            title="Previous headline"
-          >
-            ◀
-          </button>
           <img src="/img/newspaper.png" alt="newspaper" className="newspaper-img" />
           <div className="headline-content">
             <p className="headline-text">{currentHeadline || `Year ${currentYear || '...'}: Markets in motion`}</p>
+            <button 
+              className="headline-refresh-btn"
+              onClick={handleNextHeadline}
+              disabled={getYearHeadlines().length <= 1}
+              title="Next headline"
+            >
+              ♻️
+            </button>
           </div>
-          <button 
-            className="headline-nav-btn headline-nav-next"
-            onClick={handleNextHeadline}
-            disabled={getYearHeadlines().length <= 1}
-            title="Next headline"
-          >
-            ▶
-          </button>
         </div>
         <div className="year-controls">
           <div className="current-year-display">

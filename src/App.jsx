@@ -7,6 +7,7 @@ import ProTips from './pages/ProTips';
 import Dashboard from './pages/Dashboard';
 import StockDetail from './components/StockDetail';
 import GameMenu from './components/GameMenu';
+import Footer from './components/Footer';
 
 function AppContent() {
   const location = useLocation();
@@ -31,6 +32,7 @@ function App() {
   return (
     <Router>
       <AppContent />
+      <Footer />
     </Router>
   );
 }
