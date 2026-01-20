@@ -377,6 +377,38 @@ export const useGameStore = create(
     return Math.max(0, preTaxValue - (preTaxValue - unrealizedGains));
   },
 
+  // Calculate portfolio analysis with realized vs unrealized holdings based on current year
+  // Returns { realized, unrealized, total }
+  // Realized: value of holdings for companies that have IPO'd in current year
+  // Unrealized: value of holdings for companies that haven't IPO'd yet (worthless in past)
+  getPortfolioAnalysis: (currentYear, currentPrices = {}) => {
+    const state = get();
+    let realized = state.cash; // Cash is always realized
+    let unrealized = 0;
+
+    Object.entries(state.holdings).forEach(([symbol, lots]) => {
+      if (lots && lots.length > 0) {
+        const price = currentPrices[symbol] || lots[0].costBasis;
+        const isAvailable = state.isStockAvailable(symbol, currentYear);
+
+        lots.forEach((lot) => {
+          const lotValue = lot.shares * price;
+          if (isAvailable) {
+            realized += lotValue;
+          } else {
+            unrealized += lotValue;
+          }
+        });
+      }
+    });
+
+    return {
+      realized,
+      unrealized,
+      total: realized + unrealized,
+    };
+  },
+
   // Unlock a premium stock
   unlockStock: (symbol) => set((state) => {
     const newUnlocked = new Set(state.unlockedStocks);

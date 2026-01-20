@@ -19,6 +19,36 @@
   font-family: 'Georgia', serif;
 }
 
+.portfolio-summary {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #eee;
+}
+
+.summary-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 0.95em;
+}
+
+.summary-label {
+  color: #666;
+  font-weight: 600;
+}
+
+.summary-value {
+  color: #333;
+  font-weight: bold;
+}
+
+.summary-value.warning {
+  color: #f59e0b;
+}
+
 .no-investments {
   text-align: center;
   color: #999;

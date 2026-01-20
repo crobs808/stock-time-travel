@@ -131,6 +131,10 @@
   color: #dc2626;
 }
 
+.stat span.warning {
+  color: #f59e0b;
+}
+
 .stat.highlight span {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;

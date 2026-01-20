@@ -70,7 +70,52 @@
   font-size: 1em;
   line-height: 1.6;
   color: #333;
-  margin: 0;
+  margin: 0 0 16px 0;
+}
+
+.game-over-portfolio-summary {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #eee;
+}
+
+.portfolio-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 0.95em;
+}
+
+.portfolio-summary-item.year-display {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.portfolio-summary-item.total {
+  border-top: 1px solid #ddd;
+  margin-top: 6px;
+  padding-top: 8px;
+  font-weight: bold;
+}
+
+.summary-label {
+  color: #666;
+  font-weight: 600;
+}
+
+.summary-value {
+  color: #333;
+  font-weight: bold;
+}
+
+.summary-value.warning {
+  color: #f59e0b;
 }
 
 .game-over-image {

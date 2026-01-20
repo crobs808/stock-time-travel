@@ -8,6 +8,7 @@ export default function InvestmentsModal() {
   const closeInvestmentsModal = useGameStore((state) => state.closeInvestmentsModal);
   const getPricesForYear = useGameStore((state) => state.getPricesForYear);
   const getStockPriceForYear = useGameStore((state) => state.getStockPriceForYear);
+  const getPortfolioAnalysis = useGameStore((state) => state.getPortfolioAnalysis);
 
   if (!showInvestmentsModal) return null;
 
@@ -53,7 +54,10 @@ export default function InvestmentsModal() {
   });
 
   // Calculate portfolio value and status
-  const portfolioValue = cash + totalInvestmentValue;
+  const portfolioAnalysis = getPortfolioAnalysis(currentYear, currentPrices);
+  const portfolioValue = portfolioAnalysis.total;
+  const realizedValue = portfolioAnalysis.realized;
+  const unrealizedValue = portfolioAnalysis.unrealized;
 
   const getStatus = (value) => {
     if (value < 100) return { level: 'Struggling', index: 0 };
@@ -64,13 +68,30 @@ export default function InvestmentsModal() {
     if (value >= 500000) return { level: 'G.O.A.T.', index: 5 };
   };
 
-  const currentStatus = getStatus(portfolioValue);
+  const currentStatus = getStatus(realizedValue);
 
   return (
     <div className="modal-overlay" onClick={closeInvestmentsModal}>
       <div className="investments-modal" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close-x" onClick={closeInvestmentsModal}>✕</button>
         <h2>Your investments as of {currentYear}</h2>
+        
+        <div className="portfolio-summary">
+          <div className="summary-stat">
+            <span className="summary-label">Realized Value:</span>
+            <span className="summary-value">{formatCurrency(realizedValue)}</span>
+          </div>
+          {unrealizedValue > 0 && (
+            <div className="summary-stat">
+              <span className="summary-label">Unrealized Value:</span>
+              <span className="summary-value warning">{formatCurrency(unrealizedValue)}</span>
+            </div>
+          )}
+          <div className="summary-stat">
+            <span className="summary-label">Total Portfolio:</span>
+            <span className="summary-value">{formatCurrency(portfolioValue)}</span>
+          </div>
+        </div>
         
         {investments.length === 0 ? (
           <p className="no-investments">No investments yet. Start trading to build your portfolio!</p>

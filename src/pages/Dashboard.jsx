@@ -35,6 +35,7 @@ export default function Dashboard() {
     applyAnnualReturns,
     getPricesForYear,
     getStockPriceForYear,
+    getPortfolioAnalysis,
     incrementClickCounter,
   } = useGameStore();
 
@@ -142,32 +143,17 @@ export default function Dashboard() {
   };
 
   const currentPrices = currentYear ? getPricesForYear(currentYear) : {};
-  let portfolioValue = cash;
-
-  Object.entries(holdings).forEach(([symbol, lots]) => {
-    if (lots && lots.length > 0) {
-      lots.forEach((lot) => {
-        // Extract purchase year from purchaseDate
-        const purchaseYear = new Date(lot.purchaseDate).getFullYear();
-        // Get the correct price accounting for IPO year
-        const price = getStockPriceForYear(symbol, currentYear, lot.costBasis, purchaseYear);
-        portfolioValue += lot.shares * price;
-      });
-    }
-  });
+  const portfolioAnalysis = getPortfolioAnalysis(currentYear, currentPrices);
+  const portfolioValue = portfolioAnalysis.total;
+  const realizedValue = portfolioAnalysis.realized;
 
   const startingValue = 100;
   const totalGain = portfolioValue - startingValue;
   const gainPercent = totalGain / startingValue;
 
-  // Monitor for game over conditions
+  // Update portfolio value in store for use elsewhere
   useEffect(() => {
-    // Update portfolio value in store
     useGameStore.setState({ portfolioValue });
-    
-    if (portfolioValue < 100 || portfolioValue > 500000) {
-      setShowGameOverModal(true);
-    }
   }, [portfolioValue]);
 
   return (
@@ -178,6 +164,18 @@ export default function Dashboard() {
             <label>Cash:</label>
             <span>{formatCurrency(cash)}</span>
           </div>
+          <div className="stat">
+            <label>Realized Value:</label>
+            <span className={realizedValue - startingValue >= 0 ? 'positive' : 'negative'}>
+              {formatCurrency(realizedValue)}
+            </span>
+          </div>
+          {portfolioAnalysis.unrealized > 0 && (
+            <div className="stat">
+              <label>Unrealized Value:</label>
+              <span className="warning">{formatCurrency(portfolioAnalysis.unrealized)}</span>
+            </div>
+          )}
           <div className="stat">
             <label>Portfolio Value:</label>
             <span className={totalGain >= 0 ? 'positive' : 'negative'}>
