@@ -57,11 +57,11 @@ export default function InvestmentsModal() {
 
   const getStatus = (value) => {
     if (value < 100) return { level: 'Struggling', index: 0 };
-    if (value < 1000) return { level: 'Surviving', index: 1 };
-    if (value < 5000) return { level: 'Striving', index: 2 };
-    if (value < 50000) return { level: 'Thriving', index: 3 };
-    if (value < 500000) return { level: 'Killing It!', index: 4 };
-    return { level: 'G.O.A.T.', index: 5 };
+    if (value >= 100 && value < 1000) return { level: 'Surviving', index: 1 };
+    if (value >= 1000 && value < 5000) return { level: 'Striving', index: 2 };
+    if (value >= 5000 && value < 50000) return { level: 'Thriving', index: 3 };
+    if (value >= 50000 && value < 500000) return { level: 'Killing It!', index: 4 };
+    if (value >= 500000) return { level: 'G.O.A.T.', index: 5 };
   };
 
   const currentStatus = getStatus(portfolioValue);
