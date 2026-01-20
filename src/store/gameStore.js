@@ -47,6 +47,12 @@ export const useGameStore = create(
   // Unavailable stock modal
   showUnavailableStockModal: false,
 
+  // Generic notification system
+  notification: null, // { type: 'success' | 'warning' | 'info', message: string }
+
+  // Track stocks that have shown the "reset" notification (pre-IPO)
+  preIPOStocksNotified: new Set(),
+
   // Headlines loaded from JSON
   headlines: headlinesData,
 
@@ -160,6 +166,7 @@ export const useGameStore = create(
       id: lotId,
       shares,
       purchaseDate: new Date().toISOString().split('T')[0],
+      purchaseYear: state.currentYear, // Store the in-game year
       costBasis: price,
     });
 
@@ -197,7 +204,7 @@ export const useGameStore = create(
       const sharesToSellFromLot = Math.min(sharesToSell, lot.shares);
 
       // Always recalculate price using year-aware logic, don't rely on passed currentPrice
-      const purchaseYear = new Date(lot.purchaseDate).getFullYear();
+      const purchaseYear = lot.purchaseYear || new Date(lot.purchaseDate).getFullYear();
       const get = useGameStore.getState();
       const salePrice = get.getStockPriceForYear(symbol, state.currentYear, lot.costBasis, purchaseYear);
       const proceeds = sharesToSellFromLot * salePrice;
@@ -250,27 +257,12 @@ export const useGameStore = create(
 
   // Apply annual returns to all holdings and update cash from dividends
   applyAnnualReturns: (returns) => set((state) => {
-    const newHoldings = { ...state.holdings };
-    let newCash = state.cash;
-
-    Object.entries(newHoldings).forEach(([symbol, lots]) => {
-      if (lots && lots.length > 0 && returns[symbol] !== undefined) {
-        const returnRate = returns[symbol];
-        
-        lots.forEach((lot) => {
-          // Update cost basis to reflect returns (simulating growth)
-          const oldValue = lot.shares * lot.costBasis;
-          const newValue = oldValue * (1 + returnRate);
-          const newCostBasis = newValue / lot.shares;
-          
-          lot.costBasis = newCostBasis;
-        });
-      }
-    });
-
+    // Note: We don't modify holdings here anymore. 
+    // Stock prices are calculated on-demand in getPortfolioAnalysis using getStockPriceForYear
+    // This preserves the original costBasis for all lots
     return {
-      holdings: newHoldings,
-      cash: newCash,
+      holdings: state.holdings,
+      cash: state.cash,
     };
   }),
 
@@ -309,33 +301,27 @@ export const useGameStore = create(
     return year >= stock.ipoYear;
   },
 
-  // Get stock price for a given year, accounting for purchase year
-  // Calculates cumulative returns from purchase year to the given year
-  // If year < IPO year, returns purchase price (frozen)
-  // If year < purchase year, returns purchase price (hasn't been bought yet)
+  // Get stock price for a given year, accounting for IPO year
+  // Calculates cumulative returns from IPO year to the given year
+  // If year < IPO year, returns purchase price (stock doesn't exist)
+  // Otherwise returns actual historical market price from IPO year forward
   getStockPriceForYear: (symbol, year, purchasePrice, purchaseYear) => {
     const stock = stocks.find((s) => s.symbol === symbol);
     if (!stock) return purchasePrice;
     
-    // If current year is before company's IPO, use purchase price (frozen)
+    // If current year is before company's IPO, use purchase price (stock doesn't exist)
     if (year < stock.ipoYear) {
       return purchasePrice;
     }
     
-    // If current year is before purchase year, use purchase price (not purchased yet)
-    if (year < purchaseYear) {
-      return purchasePrice;
-    }
-    
-    // Calculate cumulative price from purchase year to given year
-    let price = purchasePrice;
-    for (let y = purchaseYear; y <= year; y++) {
+    // Calculate cumulative price from IPO year to given year using historical data
+    let price = 100; // Start with $100 at IPO
+    for (let y = stock.ipoYear; y <= year; y++) {
       if (stockReturns[symbol] && stockReturns[symbol][y] !== undefined) {
         const returnRate = stockReturns[symbol][y];
         price = price * (1 + returnRate);
       }
     }
-    
     return price;
   },
 
@@ -400,8 +386,8 @@ export const useGameStore = create(
         const isAvailable = state.isStockAvailable(symbol, currentYear);
 
         lots.forEach((lot) => {
-          // Calculate price from purchase date forward
-          const purchaseYear = new Date(lot.purchaseDate).getFullYear();
+          // Use stored purchaseYear, or fall back to extracting from purchaseDate for backwards compatibility
+          const purchaseYear = lot.purchaseYear || new Date(lot.purchaseDate).getFullYear();
           const price = state.getStockPriceForYear(symbol, currentYear, lot.costBasis, purchaseYear);
           const lotValue = lot.shares * price;
           
@@ -449,6 +435,38 @@ export const useGameStore = create(
     };
   }),
 
+  // Check for stocks in pre-IPO years and return list to notify
+  checkPreIPOStocks: (currentYear) => {
+    const state = get();
+    const preIPOStocks = [];
+    
+    Object.keys(state.holdings).forEach((symbol) => {
+      const stock = stocks.find((s) => s.symbol === symbol);
+      if (stock && currentYear < stock.ipoYear && !state.preIPOStocksNotified.has(symbol)) {
+        preIPOStocks.push(symbol);
+      }
+    });
+    
+    if (preIPOStocks.length > 0) {
+      set((state) => {
+        const newNotified = new Set(state.preIPOStocksNotified);
+        preIPOStocks.forEach((symbol) => newNotified.add(symbol));
+        return { 
+          preIPOStocksNotified: newNotified,
+          notification: {
+            type: 'warning',
+            message: `You traveled to the past before the following investments existed so they have been reset to the purchase price: ${preIPOStocks.join(', ')}`
+          }
+        };
+      });
+    }
+    
+    return preIPOStocks;
+  },
+
+  // Clear notification
+  clearNotification: () => set({ notification: null }),
+
   // Reset game
   resetGame: () => set({
     currentYear: null,
@@ -461,6 +479,7 @@ export const useGameStore = create(
     travelCreditsUsed: 0,
     holdings: {},
     achievements: new Set(),
+    preIPOStocksNotified: new Set(),
     taxState: {
       ytdShortTermGains: 0,
       ytdLongTermGains: 0,

@@ -31,12 +31,15 @@ export default function Dashboard() {
     unlockedStocks,
     achievements,
     travelCreditsUsed,
+    notification,
     generateRandomYear,
     applyAnnualReturns,
     getPricesForYear,
     getStockPriceForYear,
     getPortfolioAnalysis,
     incrementClickCounter,
+    checkPreIPOStocks,
+    clearNotification,
   } = useGameStore();
 
   // Monitor for new achievements
@@ -48,6 +51,23 @@ export default function Dashboard() {
       setLastAchievements(achievements);
     }
   }, [achievements, lastAchievements]);
+
+  // Check for pre-IPO stocks when year changes
+  useEffect(() => {
+    if (currentYear) {
+      checkPreIPOStocks(currentYear);
+    }
+  }, [currentYear, checkPreIPOStocks]);
+
+  // Auto-dismiss notification after 4 seconds
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => {
+        clearNotification();
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification, clearNotification]);
 
   // Initialize year and headline if not set
   useEffect(() => {
@@ -313,6 +333,20 @@ export default function Dashboard() {
           achievement={toasterAchievement}
           onDismiss={() => setToasterAchievement(null)}
         />
+      )}
+
+      {notification && (
+        <div className={`notification-toaster notification-${notification.type}`}>
+          <div className="notification-content">
+            {notification.message}
+          </div>
+          <button 
+            className="notification-close"
+            onClick={() => clearNotification()}
+          >
+            ✕
+          </button>
+        </div>
       )}
 
       {showAchievementsModal && (
