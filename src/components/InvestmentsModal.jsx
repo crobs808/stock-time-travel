@@ -98,27 +98,38 @@ export default function InvestmentsModal() {
         )}
 
         <div className="status-indicator">
-          <div className="status-line">
-            <div className={`status-marker ${currentStatus.index === 0 ? 'active' : 'inactive'} position-top`} data-index="0">
-              <span className="status-label">Struggling</span>
+          <div className="status-list">
+            <div className={`status-item ${currentStatus.index === 0 ? 'active' : ''}`}>
+              <span className="status-radio">{currentStatus.index === 0 ? '●' : '○'}</span>
+              <span className="status-name">Struggling</span>
+              <span className="status-range">Less than $100</span>
             </div>
-            <div className={`status-marker ${currentStatus.index === 1 ? 'active' : 'inactive'} position-bottom`} data-index="1">
-              <span className="status-label">Surviving</span>
+            <div className={`status-item ${currentStatus.index === 1 ? 'active' : ''}`}>
+              <span className="status-radio">{currentStatus.index === 1 ? '●' : '○'}</span>
+              <span className="status-name">Surviving</span>
+              <span className="status-range">$100 - $999</span>
             </div>
-            <div className={`status-marker ${currentStatus.index === 2 ? 'active' : 'inactive'} position-top`} data-index="2">
-              <span className="status-label">Striving</span>
+            <div className={`status-item ${currentStatus.index === 2 ? 'active' : ''}`}>
+              <span className="status-radio">{currentStatus.index === 2 ? '●' : '○'}</span>
+              <span className="status-name">Striving</span>
+              <span className="status-range">$1,000 - $4,999</span>
             </div>
-            <div className={`status-marker ${currentStatus.index === 3 ? 'active' : 'inactive'} position-bottom`} data-index="3">
-              <span className="status-label">Thriving</span>
+            <div className={`status-item ${currentStatus.index === 3 ? 'active' : ''}`}>
+              <span className="status-radio">{currentStatus.index === 3 ? '●' : '○'}</span>
+              <span className="status-name">Thriving</span>
+              <span className="status-range">$5,000 - $49,999</span>
             </div>
-            <div className={`status-marker ${currentStatus.index === 4 ? 'active' : 'inactive'} position-top`} data-index="4">
-              <span className="status-label">Killing It!</span>
+            <div className={`status-item ${currentStatus.index === 4 ? 'active' : ''}`}>
+              <span className="status-radio">{currentStatus.index === 4 ? '●' : '○'}</span>
+              <span className="status-name">Killing It!</span>
+              <span className="status-range">$50,000 - $499,999</span>
             </div>
-            <div className={`status-marker ${currentStatus.index === 5 ? 'active' : 'inactive'} position-bottom`} data-index="5">
-              <span className="status-label">G.O.A.T.</span>
+            <div className={`status-item ${currentStatus.index === 5 ? 'active' : ''}`}>
+              <span className="status-radio">{currentStatus.index === 5 ? '●' : '○'}</span>
+              <span className="status-name">G.O.A.T.</span>
+              <span className="status-range">$500,000+</span>
             </div>
           </div>
-          <div className="current-status">Current Status: <strong>{currentStatus.level}</strong></div>
         </div>
 
         <button className="investments-close-button" onClick={closeInvestmentsModal}>

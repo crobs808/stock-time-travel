@@ -97,9 +97,9 @@
 }
 
 .stock-name {
-  font-size: 0.9em;
+  font-size: 0.7em;
   opacity: 0.9;
-  margin-bottom: 8px;
+  margin: 0;
 }
 
 .stock-price {

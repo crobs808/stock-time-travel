@@ -238,7 +238,7 @@ export default function Dashboard() {
         {/* Premium Stocks Section */}
         <div className="stocks-section">
           <h3 className="section-title">Premium Investments</h3>
-          <div className="grid">
+          <div className="grid premium-grid">
             {stocks
               .filter((stock) => stock.premium)
               .map((stock) => {

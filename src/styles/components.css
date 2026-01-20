@@ -94,14 +94,14 @@
 }
 
 .stock-name {
-  font-size: 0.65em;
+  font-size: 0.7em;
   color: rgba(255, 255, 255, 0.9);
-  margin-top: 2px;
+  margin: 0;
   line-height: 1.2;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 1.2em;
+  max-height: 2.4em;
 }
 
 .lock-badge {
@@ -140,6 +140,10 @@
 
   .symbol {
     font-size: 0.95em;
+  }
+
+  .stock-name {
+    font-size: 0.7em;
   }
 
   .tax-toggle label {

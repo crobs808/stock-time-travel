@@ -113,11 +113,17 @@ body {
   gap: 20px;
   align-items: flex-start;
   margin: 0;
+  height: 250px;
 }
 
 .opening-content-wrapper .opening-description {
   flex: 1;
   margin: 0;
+}
+
+.opening-content-wrapper .opening-description p {
+  color: #0f5a2a;
+  font-weight: bold;
 }
 
 .opening-content-wrapper .jay-intro-image {
@@ -180,7 +186,7 @@ body {
   color: white;
   padding: 15px 30px;
   font-size: 1.1em;
-  margin-top: 25px;
+  margin: 0;
 }
 
 .start-button:hover {
@@ -374,9 +380,9 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
+  margin: 0;
+  padding-top: 5px;
+  border: none;
 }
 
 .progress-text {
