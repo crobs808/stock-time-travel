@@ -1,11 +1,12 @@
 .dashboard {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 12px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  overflow: hidden;
+  overflow: visible;
   margin: 0;
   max-width: 100vw;
   box-sizing: border-box;
@@ -528,13 +529,11 @@
   padding: 8px;
   margin-bottom: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   gap: 12px;
   box-sizing: border-box;
-  flex-shrink: 0;
 }
 
 .stocks-grid h2 {
