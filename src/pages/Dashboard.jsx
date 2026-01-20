@@ -160,47 +160,47 @@ export default function Dashboard() {
     <div className="dashboard" onClick={incrementClickCounter}>
       <div className="dashboard-header">
         <div className="portfolio-info">
-          <div className="stat">
-            <label>Cash:</label>
-            <span>{formatCurrency(cash)}</span>
+          <div className="portfolio-grid">
+            <div className="grid-row header-row">
+              <div className="grid-cell header-cell"><strong>Cash</strong></div>
+              <div className="grid-cell header-cell"><strong>Portfolio Value</strong></div>
+              <div className="grid-cell header-cell"><strong>Realized</strong></div>
+              <div className="grid-cell header-cell"><strong>Unrealized</strong></div>
+              <div className="grid-cell header-cell"><strong>Total Gain/Loss</strong></div>
+            </div>
+            <div className="grid-row value-row">
+              <div className="grid-cell value-cell">
+                {formatCurrency(cash)}
+              </div>
+              <div className={`grid-cell value-cell ${totalGain >= 0 ? 'positive' : 'negative'}`}>
+                {formatCurrency(portfolioValue)}
+              </div>
+              <div className={`grid-cell value-cell ${realizedValue - startingValue >= 0 ? 'positive' : 'negative'}`}>
+                {formatCurrency(realizedValue)}
+              </div>
+              <div className="grid-cell value-cell warning">
+                {formatCurrency(portfolioAnalysis.unrealized)}
+              </div>
+              <div className={`grid-cell value-cell ${totalGain >= 0 ? 'positive' : 'negative'}`}>
+                {formatPercent(gainPercent)}
+              </div>
+            </div>
           </div>
-          <div className="stat">
-            <label>Realized Value:</label>
-            <span className={realizedValue - startingValue >= 0 ? 'positive' : 'negative'}>
-              {formatCurrency(realizedValue)}
-            </span>
-          </div>
-          {portfolioAnalysis.unrealized > 0 && (
+          <div className="portfolio-info-extra">
             <div className="stat">
-              <label>Unrealized Value:</label>
-              <span className="warning">{formatCurrency(portfolioAnalysis.unrealized)}</span>
+              <label>Years Invested:</label>
+              <span>{yearsInvested}</span>
             </div>
-          )}
-          <div className="stat">
-            <label>Portfolio Value:</label>
-            <span className={totalGain >= 0 ? 'positive' : 'negative'}>
-              {formatCurrency(portfolioValue)}
-            </span>
-          </div>
-          <div className="stat">
-            <label>Total Gain/Loss:</label>
-            <span className={totalGain >= 0 ? 'positive' : 'negative'}>
-              {formatCurrency(totalGain)} ({formatPercent(gainPercent)})
-            </span>
-          </div>
-          <div className="stat">
-            <label>Years Invested:</label>
-            <span>{yearsInvested}</span>
-          </div>
-          {currentYear && (
-            <div className="stat highlight">
-              <label>Current Year:</label>
-              <span>{currentYear}</span>
+            {currentYear && (
+              <div className="stat highlight">
+                <label>Current Year:</label>
+                <span>{currentYear}</span>
+              </div>
+            )}
+            <div className="stat">
+              <label>Travel Credits:</label>
+              <span>{39 - travelCreditsUsed}</span>
             </div>
-          )}
-          <div className="stat">
-            <label>Travel Credits:</label>
-            <span>{39 - travelCreditsUsed}</span>
           </div>
         </div>
         <div className="header-actions">

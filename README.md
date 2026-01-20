@@ -57,3 +57,19 @@ The app uses:
 - **Portfolio Tracking**: All holdings are preserved across travels
 - **Real Returns**: Historical performance is calculated from actual stock data
 - **Achievements**: Earn badges for specific gameplay accomplishments
+
+## Special Note on Chaotic Mode Investment Valuation
+
+In Chaotic Mode, stock prices are calculated from your **purchase date forward**, not from a fixed starting point (1981). Here's why:
+
+**The Problem**: Without this logic, jumping backward in time would create phantom losses. For example:
+- Buy Amazon in 1997 for $100
+- Jump to 2005: Stock is worth $150 (great!)
+- Jump back to 2000: Stock would incorrectly show as down 20% (based on 1981-2000 data)
+
+**The Solution**: Stock values are always calculated from when **you purchased it**:
+- Buy Amazon in 1997: Price = $100 × (1997 returns) × (1998 returns) × ... × (current year returns)
+- Jump to 2000: Price = $100 × (1997→2000 returns only)
+- Jump back to 1995 (before purchase): Shows purchase price ($100), treating it as if it hasn't been bought yet
+
+This makes time jumping fair and intuitive—you only see returns that happened *after* your purchase date in the timeline, regardless of how you jump around temporally. The future hasn't happened yet, so previous losses from future years reset when you go back in time.

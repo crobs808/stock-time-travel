@@ -28,9 +28,81 @@
 
 .portfolio-info {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.85em;
+  flex: 1;
+}
+
+.portfolio-grid {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: white;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  min-width: 0;
+}
+
+.header-row {
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #999;
+}
+
+.value-row {
+  border-bottom: 1px solid #ddd;
+}
+
+.grid-cell {
+  border-right: 1px solid #ddd;
+  padding: 6px 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grid-cell:last-child {
+  border-right: none;
+}
+
+.header-cell {
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  background-color: #f0f0f0;
+  font-size: 0.9em;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.value-cell {
+  text-align: center;
+  color: #667eea;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+.value-cell.positive {
+  color: #16a34a;
+}
+
+.value-cell.negative {
+  color: #dc2626;
+}
+
+.value-cell.warning {
+  color: #f59e0b;
+}
+
+.portfolio-info-extra {
+  display: flex;
   gap: 15px;
   flex-wrap: wrap;
-  font-size: 0.85em;
 }
 
 .header-left {

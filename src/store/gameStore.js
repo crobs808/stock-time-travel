@@ -288,10 +288,15 @@ export const useGameStore = create(
     const prices = {};
     
     Object.keys(stockReturns).forEach((symbol) => {
-      if (stockReturns[symbol][year]) {
-        const returnRate = stockReturns[symbol][year];
-        prices[symbol] = 100 * (1 + returnRate);
+      let price = 100; // Start with $100
+      // Calculate cumulative price from 1981 to the given year
+      for (let y = 1981; y <= year; y++) {
+        if (stockReturns[symbol][y] !== undefined) {
+          const returnRate = stockReturns[symbol][y];
+          price = price * (1 + returnRate);
+        }
       }
+      prices[symbol] = price;
     });
     
     return prices;
@@ -304,9 +309,10 @@ export const useGameStore = create(
     return year >= stock.ipoYear;
   },
 
-  // Get stock price for a given year, accounting for IPO year
+  // Get stock price for a given year, accounting for purchase year
+  // Calculates cumulative returns from purchase year to the given year
   // If year < IPO year, returns purchase price (frozen)
-  // Otherwise returns calculated price based on returns
+  // If year < purchase year, returns purchase price (hasn't been bought yet)
   getStockPriceForYear: (symbol, year, purchasePrice, purchaseYear) => {
     const stock = stocks.find((s) => s.symbol === symbol);
     if (!stock) return purchasePrice;
@@ -316,18 +322,21 @@ export const useGameStore = create(
       return purchasePrice;
     }
     
-    // If current year is before purchase year, use purchase price
+    // If current year is before purchase year, use purchase price (not purchased yet)
     if (year < purchaseYear) {
       return purchasePrice;
     }
     
-    // Otherwise calculate price based on returns for this year
-    if (stockReturns[symbol] && stockReturns[symbol][year]) {
-      const returnRate = stockReturns[symbol][year];
-      return 100 * (1 + returnRate);
+    // Calculate cumulative price from purchase year to given year
+    let price = purchasePrice;
+    for (let y = purchaseYear; y <= year; y++) {
+      if (stockReturns[symbol] && stockReturns[symbol][y] !== undefined) {
+        const returnRate = stockReturns[symbol][y];
+        price = price * (1 + returnRate);
+      }
     }
     
-    return purchasePrice;
+    return price;
   },
 
   // Calculate portfolio value (pre-tax)
@@ -388,11 +397,14 @@ export const useGameStore = create(
 
     Object.entries(state.holdings).forEach(([symbol, lots]) => {
       if (lots && lots.length > 0) {
-        const price = currentPrices[symbol] || lots[0].costBasis;
         const isAvailable = state.isStockAvailable(symbol, currentYear);
 
         lots.forEach((lot) => {
+          // Calculate price from purchase date forward
+          const purchaseYear = new Date(lot.purchaseDate).getFullYear();
+          const price = state.getStockPriceForYear(symbol, currentYear, lot.costBasis, purchaseYear);
           const lotValue = lot.shares * price;
+          
           if (isAvailable) {
             realized += lotValue;
           } else {
