@@ -32,10 +32,10 @@ export default function Rules() {
 
         <div className="button-group">
           <button className="secondary-button" onClick={handleBack}>
-            ← Back
+            ⬅️ Back
           </button>
           <button className="primary-button" onClick={handleNext}>
-            Next →
+            View Tips ➡️
           </button>
         </div>
 

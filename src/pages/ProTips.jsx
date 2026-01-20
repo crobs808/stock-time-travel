@@ -36,10 +36,10 @@ export default function ProTips() {
 
         <div className="button-group">
           <button className="secondary-button" onClick={handleBack}>
-            ← Back
+            ⬅️ Back
           </button>
           <button className="primary-button" onClick={handleStart}>
-            Choose Mode →
+            Choose Mode ➡️
           </button>
         </div>
 

@@ -16,6 +16,10 @@ export default function ModeSelection() {
     navigate('/game');
   };
 
+  const handleBack = () => {
+    navigate('/pro-tips');
+  };
+
   return (
     <div className="screen mode-selection-screen">
       <div className="screen-content">
@@ -33,6 +37,16 @@ export default function ModeSelection() {
             <div className="mode-description">Jump to random years and test your skills unpredictably</div>
           </button>
         </div>
+
+        <div className="button-group">
+          <button className="secondary-button" onClick={handleBack}>
+            ⬅️ Back
+          </button>
+        </div>
+
+        <p className="legal-disclaimer">
+          <em>For entertainment only. Nothing in this game constitutes financial advice. Always consult a licensed financial professional before making real investment decisions.</em>
+        </p>
 
         <div className="progress-indicator">
           <span className="progress-text">4 of 4</span>

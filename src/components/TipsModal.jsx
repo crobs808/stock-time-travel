@@ -13,7 +13,7 @@ export default function TipsModal() {
     <div className="tips-modal-overlay" onClick={closeTipsModal}>
       <div className="tips-modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="tips-modal-header">
-          <img src="/img/jay.png" alt="Jay" className="tips-modal-image" />
+          <img src="/img/jay-tips.png" alt="Jay" className="tips-modal-image" />
           <div className="tips-modal-text-section">
             <h2 className="tips-modal-title">Jay's Pro Tips</h2>
             <p className="tips-modal-text">"{currentTip}" <br/><span className="tips-quote-attribution">- Jay</span></p>

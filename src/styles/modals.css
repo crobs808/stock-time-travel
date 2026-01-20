@@ -78,13 +78,13 @@
 .stat-value {
   font-size: 1.3em;
   font-weight: bold;
-  color: #0f5a2a;
+  color: #667eea;
 }
 
 /* Stock Tile */
 .stock-tile {
   padding: 15px;
-  background: linear-gradient(135deg, #0f5a2a 0%, #F4B942 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   text-align: center;
   border-bottom: 1px solid #ddd;

@@ -7,7 +7,6 @@ import StockTradeModal from '../components/StockTradeModal';
 import AchievementToaster from '../components/AchievementToaster';
 import AchievementsModal from '../components/AchievementsModal';
 import InvestmentsModal from '../components/InvestmentsModal';
-import TipsToggle from '../components/TipsToggle';
 import TipsModal from '../components/TipsModal';
 import headlinesData from '../data/headlines.json';
 import '../styles/dashboard.css';
@@ -170,9 +169,20 @@ export default function Dashboard() {
           )}
         </div>
         <div className="header-left">
-          <TipsToggle />
         </div>
         <div className="header-right">
+          <button 
+            className="investments-button" 
+            onClick={() => {
+              useGameStore.setState({
+                showTipsModal: true,
+                currentTipIndex: Math.floor(Math.random() * 13),
+              });
+            }}
+            title="View Jay's Tips"
+          >
+            👍
+          </button>
           <button 
             className="investments-button" 
             onClick={() => useGameStore.getState().openInvestmentsModal()}
