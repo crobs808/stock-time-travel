@@ -12,7 +12,7 @@ export const useGameStore = create(
   currentHeadline: null,
   cash: 100,
   gameStarted: false,
-  currentScreen: 'opening', // opening, mode-selection, rules, pro-tips, game, stock-detail
+  currentScreen: 'opening', // opening, mode-selection, rules, pro-tips, game
   selectedStock: null,
   yearsInvested: 0,
   timeTravelMode: null, // 'sequential' or 'chaotic'

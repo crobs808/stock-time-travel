@@ -1,16 +1,59 @@
-# React + Vite
+# Stock Market Time Travel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An educational stock investing game where you travel through time with $100 in starting capital and learn investment principles by trading real historical stocks (1981-2020).
 
-Currently, two official plugins are available:
+## How to Play
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Start**: Choose a game mode (Sequential or Chaotic)
+2. **Learn**: Read the Rules and Pro Tips
+3. **Trade**: Buy and sell stocks through the dashboard
+4. **Advance**: Travel through years and experience historical stock returns
+5. **Achieve**: Unlock achievements as you play
+6. **Finish**: Game ends after 39 travels or in Sequential mode at year 2020
 
-## React Compiler
+## Game Modes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Sequential Mode**: Travel chronologically from 1981 to 2020
+- **Chaotic Mode**: Jump to random years within 1981-2020
 
-## Expanding the ESLint configuration
+## Main Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Dashboard**: View portfolio, cash balance, and available stocks
+- **Stock Trading**: Click any stock to open the quick-trade modal with preset percentages (10%, 50%, 90%, MAX)
+- **Investment Modal**: View all current holdings with gains/losses at a glance
+- **Achievements**: Unlock badges through gameplay milestones
+- **Tips System**: Get random investment tips while playing
+- **Game Over States**: End screen shows your final performance status
+
+## Stock Selection
+
+- **Blue Chip Stocks**: AAPL, AMZN, MSFT, INTC, F, KO
+- **Tech Leaders**: GOOGL, FB, TSLA, NFLX (premium unlock)
+- **Index Fund**: VFINX
+- **Fixed Income**: CD (Certificate of Deposit)
+
+## Setup & Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+The app uses:
+- **React** for UI
+- **Zustand** for state management with localStorage persistence
+- **Vite** for bundling
+- Real historical stock returns from 1981-2020
+
+## Key Concepts
+
+- **Time Travel Credits**: You have 39 travels before the game ends
+- **Portfolio Tracking**: All holdings are preserved across travels
+- **Real Returns**: Historical performance is calculated from actual stock data
+- **Achievements**: Earn badges for specific gameplay accomplishments
