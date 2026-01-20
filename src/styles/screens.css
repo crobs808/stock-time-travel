@@ -127,9 +127,11 @@ body.game-page {
 .opening-content-wrapper {
   display: flex;
   gap: 20px;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   margin: 0;
-  height: 250px;
+  height: auto;
+  flex-wrap: wrap;
 }
 
 .opening-content-wrapper .opening-description {
@@ -143,8 +145,8 @@ body.game-page {
 }
 
 .opening-content-wrapper .jay-intro-image {
-  max-height: 250px;
-  max-width: 300px;
+  max-height: 200px;
+  max-width: 250px;
   height: auto;
   width: auto;
   flex-shrink: 0;
@@ -234,32 +236,33 @@ body.game-page {
 /* Larger screens */
 @media (min-width: 480px) {
   .screen-content {
-    padding: 35px 30px;
-    max-width: 520px;
+    padding: 25px 20px;
+    max-width: 100%;
   }
 
   .screen-logo {
-    max-width: 50%;
+    max-width: 45%;
   }
 
   .main-title {
-    font-size: 2.6em;
+    font-size: 2.2em;
   }
 
   .tagline {
-    font-size: 1.1em;
-    margin-bottom: 20px;
+    font-size: 1.0em;
+    margin-bottom: 16px;
   }
 
   .opening-description,
   .rules-list,
   .tips-list {
-    font-size: 1.02em;
+    font-size: 0.95em;
   }
 
   .button-group {
     flex-direction: row;
-    margin-top: 22px;
+    margin-top: 16px;
+    gap: 10px;
   }
 
   .start-button,
@@ -267,6 +270,7 @@ body.game-page {
   .secondary-button {
     width: auto;
     flex: 1;
+    min-height: 44px;
   }
 }
 

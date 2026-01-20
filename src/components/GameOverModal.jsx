@@ -30,20 +30,20 @@ export default function GameOverModal() {
     message = 'Wow, Jay is quite impressed and invites you to party on his yacht. We hope you learned a thing or two about investment strategies and had a little fun in the process. Tell your friends about this game so we can increase financial literacy throughout the world!';
     image = '/img/jay-goat.png';
   } else if (realizedValue >= 250000) {
-    status = 'millionaire';
-    title = '[Placeholder: Millionaire Status]';
-    message = '[Add your custom message for the Millionaire status here]';
-    image = '/img/placeholder.png';
+    status = 'thriving';
+    title = 'Congrats, you made it through!';
+    message = 'Hey, not too bad. At least you didn\'t end up with nothing. But, I bet you could do even better next time. Share this game with your friends too, so we can increase financial literacy everywhere!';
+    image = '/img/jay-tips.png';
   } else if (realizedValue >= 150000) {
-    status = 'wealthy';
-    title = '[Placeholder: Wealthy Status]';
-    message = '[Add your custom message for the Wealthy status here]';
-    image = '/img/placeholder.png';
+    status = 'striving';
+    title = 'Congrats, you made it through!';
+    message = 'Hey, not too bad. At least you didn\'t end up with nothing. But, I bet you could do even better next time. Share this game with your friends too, so we can increase financial literacy everywhere!';
+    image = '/img/jay-tips.png';
   } else if (realizedValue >= 100) {
-    status = 'winner';
-    title = '[Placeholder: Winner Status]';
-    message = '[Add your custom message for the Winner status here]';
-    image = '/img/placeholder.png';
+    status = 'surviving';
+    title = 'Congrats, you made it through!';
+    message = 'Hey, not too bad. At least you didn\'t end up with nothing. But, I bet you could do even better next time. Share this game with your friends too, so we can increase financial literacy everywhere!';
+    image = '/img/jay-tips.png';
   }
   
   if (!status) {
@@ -77,12 +77,10 @@ export default function GameOverModal() {
               <span className="summary-label">Realized Value:</span>
               <span className="summary-value">{formatCurrency(realizedValue)}</span>
             </div>
-            {unrealizedValue > 0 && (
-              <div className="portfolio-summary-item">
-                <span className="summary-label">Unrealized Value:</span>
-                <span className="summary-value warning">{formatCurrency(unrealizedValue)}</span>
-              </div>
-            )}
+            <div className="portfolio-summary-item">
+              <span className="summary-label">Unrealized Value:</span>
+              <span className="summary-value warning">{formatCurrency(unrealizedValue)}</span>
+            </div>
             <div className="portfolio-summary-item total">
               <span className="summary-label">Total Portfolio:</span>
               <span className="summary-value">{formatCurrency(portfolioValue)}</span>

@@ -70,14 +70,14 @@
   font-size: 1em;
   line-height: 1.6;
   color: #333;
-  margin: 0 0 16px 0;
+  margin: 0;
 }
 
 .game-over-portfolio-summary {
   background: #f9f9f9;
   border-radius: 8px;
   padding: 12px;
-  margin-bottom: 16px;
+  margin: 0;
   border: 1px solid #eee;
 }
 
