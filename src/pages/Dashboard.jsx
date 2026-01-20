@@ -8,11 +8,14 @@ import AchievementToaster from '../components/AchievementToaster';
 import AchievementsModal from '../components/AchievementsModal';
 import InvestmentsModal from '../components/InvestmentsModal';
 import TipsModal from '../components/TipsModal';
+import TipsToggle from '../components/TipsToggle';
 import UnavailableStockModal from '../components/UnavailableStockModal';
+import GameOverModal from '../components/GameOverModal';
 import headlinesData from '../data/headlines.json';
 import '../styles/dashboard.css';
 
 export default function Dashboard() {
+  const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [selectedStock, setSelectedStock] = useState(null);
   const [showAchievementsModal, setShowAchievementsModal] = useState(false);
   const [toasterAchievement, setToasterAchievement] = useState(null);
@@ -27,6 +30,7 @@ export default function Dashboard() {
     yearsInvested,
     unlockedStocks,
     achievements,
+    travelCreditsUsed,
     generateRandomYear,
     applyAnnualReturns,
     getPricesForYear,
@@ -67,6 +71,24 @@ export default function Dashboard() {
   }, [currentYear]);
 
   const handleAdvanceYear = () => {
+    const { travelCreditsUsed, timeTravelMode, currentYear } = useGameStore.getState();
+    
+    // Check if they've exceeded travel limit (39 max)
+    if (travelCreditsUsed >= 39) {
+      setShowGameOverModal(true);
+      return;
+    }
+    
+    // For sequential mode, check if they're at 2020
+    if (timeTravelMode === 'sequential' && currentYear === 2020) {
+      useGameStore.setState({ travelCreditsUsed: travelCreditsUsed + 1 });
+      setShowGameOverModal(true);
+      return;
+    }
+    
+    // Increment travel credits
+    useGameStore.setState({ travelCreditsUsed: travelCreditsUsed + 1 });
+    
     const year = generateRandomYear();
     
     // Apply returns to all holdings based on the year
@@ -138,6 +160,16 @@ export default function Dashboard() {
   const totalGain = portfolioValue - startingValue;
   const gainPercent = totalGain / startingValue;
 
+  // Monitor for game over conditions
+  useEffect(() => {
+    // Update portfolio value in store
+    useGameStore.setState({ portfolioValue });
+    
+    if (portfolioValue < 100 || portfolioValue > 500000) {
+      setShowGameOverModal(true);
+    }
+  }, [portfolioValue]);
+
   return (
     <div className="dashboard" onClick={incrementClickCounter}>
       <div className="dashboard-header">
@@ -168,10 +200,13 @@ export default function Dashboard() {
               <span>{currentYear}</span>
             </div>
           )}
+          <div className="stat">
+            <label>Travel Credits:</label>
+            <span>{39 - travelCreditsUsed}</span>
+          </div>
         </div>
-        <div className="header-left">
-        </div>
-        <div className="header-right">
+        <div className="header-actions">
+          <TipsToggle />
           <button 
             className="investments-button" 
             onClick={() => {
@@ -294,6 +329,8 @@ export default function Dashboard() {
       <TipsModal />
 
       <UnavailableStockModal />
+
+      {showGameOverModal && <GameOverModal />}
     </div>
   );
 }

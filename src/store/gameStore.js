@@ -1,9 +1,12 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import { checkAchievements, getUnlockedStocks } from '../utils/achievements';
 import headlinesData from '../data/headlines.json';
 import { stockReturns, stocks } from '../data/stockReturns';
 
-export const useGameStore = create((set, get) => ({
+export const useGameStore = create(
+  persist(
+    (set, get) => ({
   // Game state
   currentYear: null,
   currentHeadline: null,
@@ -14,6 +17,8 @@ export const useGameStore = create((set, get) => ({
   yearsInvested: 0,
   timeTravelMode: null, // 'sequential' or 'chaotic'
   currentSequentialYear: 1981, // For sequential mode tracking
+  portfolioValue: 100, // Current total portfolio value
+  travelCreditsUsed: 0, // Track how many times user has traveled (max 39)
 
   // Portfolio tracking (lot-based for FIFO)
   holdings: {}, // { AAPL: [{ id, shares, purchaseDate, costBasis }, ...], ... }
@@ -409,6 +414,7 @@ export const useGameStore = create((set, get) => ({
     currentScreen: 'opening',
     selectedStock: null,
     yearsInvested: 0,
+    travelCreditsUsed: 0,
     holdings: {},
     taxState: {
       ytdShortTermGains: 0,
@@ -417,4 +423,29 @@ export const useGameStore = create((set, get) => ({
       taxBracket: 'middle',
     },
   }),
-}));
+    }),
+    {
+      name: 'stock-time-travel-game-state',
+      partialize: (state) => ({
+        // Only persist essential game state (do NOT persist portfolioValue - it should be calculated)
+        currentYear: state.currentYear,
+        currentHeadline: state.currentHeadline,
+        cash: state.cash,
+        yearsInvested: state.yearsInvested,
+        timeTravelMode: state.timeTravelMode,
+        currentSequentialYear: state.currentSequentialYear,
+        travelCreditsUsed: state.travelCreditsUsed,
+        holdings: state.holdings,
+        taxState: state.taxState,
+        unlockedStocks: Array.from(state.unlockedStocks),
+        achievements: Array.from(state.achievements),
+      }),
+      merge: (persistedState, currentState) => ({
+        ...currentState,
+        ...persistedState,
+        unlockedStocks: new Set(persistedState.unlockedStocks || []),
+        achievements: new Set(persistedState.achievements || []),
+      }),
+    }
+  )
+);

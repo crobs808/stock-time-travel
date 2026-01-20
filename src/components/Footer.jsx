@@ -6,11 +6,11 @@ export default function Footer() {
   return (
     <footer className="app-footer">
       <p>
-        © {currentYear} by{' '}
+        ©{' '}
         <a href="https://conrob.dev/" target="_blank" rel="noopener noreferrer">
           ConRob
         </a>
-        {' '} | {' '}
+        {' '}{currentYear} | {' '}
         <a href="https://github.com/crobs808/stock-time-travel" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>

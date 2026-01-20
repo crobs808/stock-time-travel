@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Opening from './pages/Opening';
@@ -12,6 +13,15 @@ import Footer from './components/Footer';
 function AppContent() {
   const location = useLocation();
   const showGameMenu = location.pathname === '/game' || location.pathname.startsWith('/stock/');
+
+  useEffect(() => {
+    const isGamePage = location.pathname === '/game' || location.pathname.startsWith('/stock/');
+    if (isGamePage) {
+      document.body.classList.add('game-page');
+    } else {
+      document.body.classList.remove('game-page');
+    }
+  }, [location.pathname]);
 
   return (
     <div className="app">

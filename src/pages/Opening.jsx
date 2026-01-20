@@ -15,7 +15,7 @@ export default function Opening() {
     <div className="screen opening-screen">
       <div className="screen-content">
         <img src="/img/logo-inapp.png" alt="Stock Market Time Travel Logo" className="screen-logo" />
-        <p className="tagline">A game that teaches investment strategies by combining history with time travel!</p>
+        <p className="tagline">A game that teaches investment strategies by combining stock market history with the fun of time travel!</p>
         
         <div className="opening-content-wrapper">
           <div className="opening-description">
