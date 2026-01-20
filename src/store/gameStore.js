@@ -416,6 +416,7 @@ export const useGameStore = create(
     yearsInvested: 0,
     travelCreditsUsed: 0,
     holdings: {},
+    achievements: new Set(),
     taxState: {
       ytdShortTermGains: 0,
       ytdLongTermGains: 0,

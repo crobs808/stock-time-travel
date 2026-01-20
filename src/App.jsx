@@ -6,16 +6,15 @@ import ModeSelection from './pages/ModeSelection';
 import Rules from './pages/Rules';
 import ProTips from './pages/ProTips';
 import Dashboard from './pages/Dashboard';
-import StockDetail from './components/StockDetail';
 import GameMenu from './components/GameMenu';
 import Footer from './components/Footer';
 
 function AppContent() {
   const location = useLocation();
-  const showGameMenu = location.pathname === '/game' || location.pathname.startsWith('/stock/');
+  const showGameMenu = location.pathname === '/game';
 
   useEffect(() => {
-    const isGamePage = location.pathname === '/game' || location.pathname.startsWith('/stock/');
+    const isGamePage = location.pathname === '/game';
     if (isGamePage) {
       document.body.classList.add('game-page');
     } else {
@@ -32,7 +31,6 @@ function AppContent() {
         <Route path="/rules" element={<Rules />} />
         <Route path="/pro-tips" element={<ProTips />} />
         <Route path="/game" element={<Dashboard />} />
-        <Route path="/stock/:symbol" element={<StockDetail />} />
       </Routes>
     </div>
   );

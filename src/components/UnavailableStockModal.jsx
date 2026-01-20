@@ -14,8 +14,8 @@ export default function UnavailableStockModal() {
           The investment you have selected is either a premium investment that you haven't unlocked, 
           or the company is not yet listed on the stock market for the current year.
         </p>
-        <button className="close-button" onClick={closeUnavailableStockModal}>
-          Close
+        <button className="modal-close-x" onClick={closeUnavailableStockModal}>
+          ✕
         </button>
       </div>
     </div>

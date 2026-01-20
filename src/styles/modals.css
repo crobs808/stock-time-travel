@@ -284,12 +284,14 @@
   color: #999;
   width: 24px;
   height: 24px;
+  min-width: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: color 0.2s;
   z-index: 10;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .close-button:hover {
@@ -523,4 +525,31 @@
     padding: 10px 12px;
     font-size: 0.9em;
   }
+}
+
+/* Modal Close Button (X icon) */
+.modal-close-x {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: url('/img/close-x.png') no-repeat center/contain;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0;
+  font-size: 0;
+  transition: opacity 0.2s;
+}
+
+.modal-close-x:hover {
+  opacity: 0.7;
+}
+
+.modal-close-x:active {
+  opacity: 0.5;
 }

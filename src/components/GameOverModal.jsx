@@ -56,6 +56,7 @@ export default function GameOverModal() {
   return (
     <div className="game-over-modal-overlay" onClick={handleOverlayClick}>
       <div className={`game-over-modal game-over-modal--${status}`} onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close-x" onClick={handleNewGame} title="Close">✕</button>
         <div className="game-over-content">
           <h1 className="game-over-title">{title}</h1>
           <p className="game-over-message">{message}</p>

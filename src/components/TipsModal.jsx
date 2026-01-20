@@ -22,6 +22,7 @@ export default function TipsModal() {
   return (
     <div className="tips-modal-overlay" onClick={closeTipsModal}>
       <div className="tips-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close-x" onClick={closeTipsModal}>✕</button>
         <h2 className="tips-modal-title">Jay's Pro Tip</h2>
         
         <div className="tips-modal-body">

@@ -15,9 +15,9 @@ export default function AchievementsModal({ achievements, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="achievements-modal" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close-x" onClick={onClose} title="Close">✕</button>
         <div className="modal-header">
           <h2>🏆 Achievements</h2>
-          <button className="close-button" onClick={onClose}>✕</button>
         </div>
         
         <div className="achievements-list">

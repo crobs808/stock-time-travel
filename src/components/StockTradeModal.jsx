@@ -248,7 +248,7 @@ export default function StockTradeModal({ symbol, onClose }) {
           </button>
         </div>
 
-        <button className="close-button" onClick={onClose}>✕</button>
+        <button className="modal-close-x" onClick={onClose} title="Close">✕</button>
       </div>
     </div>
   );
