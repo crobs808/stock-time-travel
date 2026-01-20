@@ -37,17 +37,21 @@
 }
 
 .tips-modal-title {
-  margin: 0 0 16px 0;
+  margin: 0;
+  padding: 0 0 16px 0;
   color: #333;
   font-size: 1.3em;
   font-weight: 700;
+  border-bottom: 2px solid #e0e0e0;
+  text-align: left;
 }
 
-.tips-modal-header {
+.tips-modal-body {
   display: flex;
   gap: 16px;
   align-items: flex-start;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .tips-modal-image {
@@ -67,12 +71,23 @@
 
 .tips-modal-text {
   color: #555;
-  font-size: 0.95em;
-  line-height: 1.6;
+  line-height: 1.2;
   margin: 0 0 20px 0;
   font-family: 'Georgia', serif;
   font-style: italic;
   font-weight: bold;
+}
+
+.tips-text-large {
+  font-size: 1.2em;
+}
+
+.tips-text-medium {
+  font-size: 0.95em;
+}
+
+.tips-text-small {
+  font-size: 0.85em;
 }
 
 .tips-quote-attribution {

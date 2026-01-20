@@ -8,15 +8,26 @@ export default function TipsModal() {
   if (!showTipsModal) return null;
 
   const currentTip = tips[currentTipIndex] || tips[0];
+  
+  // Dynamically size text based on quote length
+  const getTextSizeClass = (text) => {
+    const length = text.length;
+    if (length < 60) return 'tips-text-large';
+    if (length < 120) return 'tips-text-medium';
+    return 'tips-text-small';
+  };
+  
+  const textSizeClass = getTextSizeClass(currentTip);
 
   return (
     <div className="tips-modal-overlay" onClick={closeTipsModal}>
       <div className="tips-modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="tips-modal-header">
+        <h2 className="tips-modal-title">Jay's Pro Tip</h2>
+        
+        <div className="tips-modal-body">
           <img src="/img/jay-tips.png" alt="Jay" className="tips-modal-image" />
           <div className="tips-modal-text-section">
-            <h2 className="tips-modal-title">Jay's Pro Tips</h2>
-            <p className="tips-modal-text">"{currentTip}" <br/><span className="tips-quote-attribution">- Jay</span></p>
+            <p className={`tips-modal-text ${textSizeClass}`}>"{currentTip}" <br/><span className="tips-quote-attribution">- Jay</span></p>
           </div>
         </div>
         
