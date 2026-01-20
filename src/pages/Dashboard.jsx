@@ -8,6 +8,7 @@ import AchievementToaster from '../components/AchievementToaster';
 import AchievementsModal from '../components/AchievementsModal';
 import InvestmentsModal from '../components/InvestmentsModal';
 import TipsModal from '../components/TipsModal';
+import UnavailableStockModal from '../components/UnavailableStockModal';
 import headlinesData from '../data/headlines.json';
 import '../styles/dashboard.css';
 
@@ -299,6 +300,8 @@ export default function Dashboard() {
       <InvestmentsModal />
 
       <TipsModal />
+
+      <UnavailableStockModal />
     </div>
   );
 }

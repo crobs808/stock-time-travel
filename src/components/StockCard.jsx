@@ -2,10 +2,12 @@ import { useGameStore } from '../store/gameStore';
 import '../styles/components.css';
 
 export default function StockCard({ stock, isUnlocked, onClick }) {
-  const { currentYear, isStockAvailable } = useGameStore();
+  const { currentYear, isStockAvailable, openUnavailableStockModal } = useGameStore();
   
   const isAvailable = currentYear ? isStockAvailable(stock.symbol, currentYear) : true;
-  const isDisabled = !isUnlocked || !isAvailable;
+  const isLockedPremium = !isUnlocked;
+  const isFutureIPO = !isAvailable;
+  const isDisabled = isLockedPremium || isFutureIPO;
   
   // Determine badge for unavailable stock
   const getUnavailableBadge = () => {
@@ -14,11 +16,19 @@ export default function StockCard({ stock, isUnlocked, onClick }) {
     }
     return '⏰'; // Clock for other investments
   };
+
+  const handleClick = () => {
+    if (isDisabled) {
+      openUnavailableStockModal();
+    } else {
+      onClick();
+    }
+  };
   
   return (
     <div 
-      className={`stock-card ${isDisabled ? 'disabled' : ''}`} 
-      onClick={isAvailable && isUnlocked ? onClick : undefined}
+      className={`stock-card ${isDisabled ? 'disabled' : ''} ${isLockedPremium ? 'disabled-locked' : ''} ${isFutureIPO ? 'disabled-future-ipo' : ''}`} 
+      onClick={handleClick}
       title={!isAvailable ? `${stock.name} has not IPO'd yet` : ''}
     >
       <div className="symbol">{stock.symbol}</div>

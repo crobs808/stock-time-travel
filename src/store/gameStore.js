@@ -39,6 +39,9 @@ export const useGameStore = create((set, get) => ({
   // Investments modal
   showInvestmentsModal: false,
 
+  // Unavailable stock modal
+  showUnavailableStockModal: false,
+
   // Headlines loaded from JSON
   headlines: headlinesData,
 
@@ -74,6 +77,10 @@ export const useGameStore = create((set, get) => ({
   // Investments modal actions
   openInvestmentsModal: () => set({ showInvestmentsModal: true }),
   closeInvestmentsModal: () => set({ showInvestmentsModal: false }),
+
+  // Unavailable stock modal actions
+  openUnavailableStockModal: () => set({ showUnavailableStockModal: true }),
+  closeUnavailableStockModal: () => set({ showUnavailableStockModal: false }),
 
   // Time travel mode selection
   setTimeTravelMode: (mode) => set({ 

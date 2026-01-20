@@ -1,0 +1,54 @@
+.unavailable-stock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.unavailable-stock-modal {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.unavailable-stock-modal h2 {
+  margin: 0 0 16px 0;
+  color: #667eea;
+  font-size: 1.3em;
+}
+
+.unavailable-stock-modal p {
+  color: #666;
+  font-size: 0.95em;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.close-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: opacity 0.2s;
+}
+
+.close-button:hover {
+  opacity: 0.9;
+}
+
+.close-button:active {
+  opacity: 0.8;
+}

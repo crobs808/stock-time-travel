@@ -72,30 +72,6 @@ export default function InvestmentsModal() {
         <button className="modal-close-x" onClick={closeInvestmentsModal}>✕</button>
         <h2>Your investments as of {currentYear}</h2>
         
-        <div className="status-indicator">
-          <div className="status-line">
-            <div className="status-marker" data-index="0" className={currentStatus.index >= 0 ? 'active' : 'inactive'}>
-              <span className="status-label">Struggling</span>
-            </div>
-            <div className="status-marker" data-index="1" className={currentStatus.index >= 1 ? 'active' : 'inactive'}>
-              <span className="status-label">Surviving</span>
-            </div>
-            <div className="status-marker" data-index="2" className={currentStatus.index >= 2 ? 'active' : 'inactive'}>
-              <span className="status-label">Striving</span>
-            </div>
-            <div className="status-marker" data-index="3" className={currentStatus.index >= 3 ? 'active' : 'inactive'}>
-              <span className="status-label">Thriving</span>
-            </div>
-            <div className="status-marker" data-index="4" className={currentStatus.index >= 4 ? 'active' : 'inactive'}>
-              <span className="status-label">Killing It!</span>
-            </div>
-            <div className="status-marker" data-index="5" className={currentStatus.index >= 5 ? 'active' : 'inactive'}>
-              <span className="status-label">G.O.A.T.</span>
-            </div>
-          </div>
-          <div className="current-status">Current Status: <strong>{currentStatus.level}</strong></div>
-        </div>
-        
         {investments.length === 0 ? (
           <p className="no-investments">No investments yet. Start trading to build your portfolio!</p>
         ) : (
@@ -120,6 +96,30 @@ export default function InvestmentsModal() {
             ))}
           </div>
         )}
+
+        <div className="status-indicator">
+          <div className="status-line">
+            <div className={`status-marker ${currentStatus.index === 0 ? 'active' : 'inactive'} position-top`} data-index="0">
+              <span className="status-label">Struggling</span>
+            </div>
+            <div className={`status-marker ${currentStatus.index === 1 ? 'active' : 'inactive'} position-bottom`} data-index="1">
+              <span className="status-label">Surviving</span>
+            </div>
+            <div className={`status-marker ${currentStatus.index === 2 ? 'active' : 'inactive'} position-top`} data-index="2">
+              <span className="status-label">Striving</span>
+            </div>
+            <div className={`status-marker ${currentStatus.index === 3 ? 'active' : 'inactive'} position-bottom`} data-index="3">
+              <span className="status-label">Thriving</span>
+            </div>
+            <div className={`status-marker ${currentStatus.index === 4 ? 'active' : 'inactive'} position-top`} data-index="4">
+              <span className="status-label">Killing It!</span>
+            </div>
+            <div className={`status-marker ${currentStatus.index === 5 ? 'active' : 'inactive'} position-bottom`} data-index="5">
+              <span className="status-label">G.O.A.T.</span>
+            </div>
+          </div>
+          <div className="current-status">Current Status: <strong>{currentStatus.level}</strong></div>
+        </div>
 
         <button className="investments-close-button" onClick={closeInvestmentsModal}>
           Close
