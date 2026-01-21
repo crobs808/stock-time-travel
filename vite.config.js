@@ -5,7 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    middlewareMode: false,
     historyApiFallback: true,
+  },
+  preview: {
+    // preview server also needs historyApiFallback for testing SPA routing locally
+    middlewareMode: false,
   },
 })
